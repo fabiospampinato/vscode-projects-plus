@@ -1,0 +1,6 @@
+
+☐ Add shortcuts for each project
+☐ Show an indeterminate progressbar when refreshing
+☐ Add support for multi-root
+☐ Add a `Project: Move` command
+☐ Add support for nested groups switching even if groups' names aren't unique

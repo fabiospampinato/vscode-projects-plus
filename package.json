@@ -1,0 +1,203 @@
+{
+  "name": "vscode-projects-plus",
+  "displayName": "Projects+",
+  "description": "An extension for managing projects. Feature rich, customizable, automatically finds your projects",
+  "icon": "resources/logo-128x128.png",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "out/src/extension.js",
+  "publisher": "fabiospampinato",
+  "author": {
+    "name": "Fabio Spampinato",
+    "email": "spampinabio@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/fabiospampinato/vscode-projects-plus/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fabiospampinato/vscode-projects-plus"
+  },
+  "engines": {
+    "vscode": "^1.10.0"
+  },
+  "keywords": [
+    "vscode",
+    "vsc",
+    "extension",
+    "projects"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Projects - Configuration",
+      "properties": {
+        "projects.activeIndicator": {
+          "type": "boolean",
+          "description": "Show an active indicator next to the name",
+          "default": true
+        },
+        "projects.configPath": {
+          "type": "string",
+          "description": "The location of the configuration file"
+        },
+        "projects.indentationSpaces": {
+          "type": "number",
+          "description": "Number of spaces to use for indentation",
+          "default": 4
+        },
+        "projects.invertPathAndDescription": {
+          "type": "boolean",
+          "description": "Invert a project path and description",
+          "default": false
+        },
+        "projects.showPaths": {
+          "type": "boolean",
+          "description": "Show projects' paths in the quickpick",
+          "default": true
+        },
+        "projects.showDescriptions": {
+          "type": "boolean",
+          "description": "Show projects' descriptions in the quickpick",
+          "default": true
+        },
+        "projects.checkPaths": {
+          "type": "boolean",
+          "description": "Check projects' paths existence",
+          "default": false
+        },
+        "projects.group": {
+          "type": "string",
+          "description": "The active context group"
+        },
+        "projects.allGroupsName": {
+          "type": "string",
+          "description": "A setting for renaming the \"All Groups\" special group",
+          "default": "All Groups"
+        },
+        "projects.refreshDepth": {
+          "type": "number",
+          "description": "Maximum depth to look at when refreshing",
+          "default": 2
+        },
+        "projects.refreshIgnoreFolders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ignore these folders when refreshing",
+          "default": [
+            "bower_components",
+            "node_modules",
+            "typings"
+          ]
+        },
+        "projects.refreshRoots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Root paths from where to start searching for projects",
+          "default": []
+        },
+        "projects.sortGroups": {
+          "type": "boolean",
+          "description": "Sort groups alphabetically",
+          "default": true
+        },
+        "projects.sortProjects": {
+          "type": "boolean",
+          "description": "Sort projects alphabetically",
+          "default": true
+        },
+        "projects.statusbarEnabled": {
+          "type": "boolean",
+          "description": "Enable the statusbar component",
+          "default": true
+        },
+        "projects.statubarCommand": {
+          "type": "string",
+          "description": "Command to execute on click",
+          "default": "projects.open"
+        },
+        "projects.statusbarTemplate": {
+          "type": "string",
+          "description": "Template for rendering the statusbar content",
+          "default": "$(file-directory) [group] $(chevron-right) [project]"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "projects.editConfig",
+        "title": "Projects: Edit configuration"
+      },
+      {
+        "command": "projects.open",
+        "title": "Project: Open"
+      },
+      {
+        "command": "projects.openInNewWindow",
+        "title": "Project: Open in new window"
+      },
+      {
+        "command": "projects.refresh",
+        "title": "Projects: Refresh"
+      },
+      {
+        "command": "projects.remove",
+        "title": "Project: Remove"
+      },
+      {
+        "command": "projects.save",
+        "title": "Project: Save"
+      },
+      {
+        "command": "projects.switchGroup",
+        "title": "Projects: Switch group"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "projects.open",
+        "key": "ctrl+alt+p",
+        "mac": "cmd+alt+p"
+      },
+      {
+        "command": "projects.openInNewWindow",
+        "key": "ctrl+alt+shift+p",
+        "mac": "cmd+alt+shift+p"
+      },
+      {
+        "command": "projects.switchGroup",
+        "key": "ctrl+alt+x",
+        "mac": "cmd+alt+x"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "mkdirp": "^0.5.1",
+    "pify": "^3.0.0",
+    "plist": "^2.1.0",
+    "walker": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.40",
+    "@types/lodash": "^4.14.59",
+    "typescript": "^2.4.1",
+    "vscode": "^1.1.4"
+  }
+}
