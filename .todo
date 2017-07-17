@@ -4,3 +4,5 @@
 ☐ Add support for multi-root
 ☐ Add a `Project: Move` command
 ☐ Add support for nested groups switching even if groups' names aren't unique
+☐ Add support for adding the git-branch to the title
+☐ Add support for adding a `dirty` icon to the title
