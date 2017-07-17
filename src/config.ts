@@ -65,26 +65,26 @@ const Config = {
 
   },
 
-  merge ( ...configs ) {
+  merge ( config, ...otherConfigs ) {
 
     /* ROUGH MERGE */ // Based on the assumpion that all arrays are either groups or projects
 
-    function roughMerge ( ...configs ) {
-      return _.mergeWith ( {}, ...configs, ( prev, next ) => {
+    function roughMerge ( config, ...otherConfigs ) {
+      return _.mergeWith ( config, ...otherConfigs, ( prev, next ) => {
         if ( !_.isArray ( prev ) || !_.isArray ( next ) ) return;
         next.forEach ( nextItem => {
           const prevItem = prev.find ( prevItem => prevItem.name === nextItem.name );
           if ( !prevItem ) {
             prev.push ( nextItem );
           } else {
-            roughMerge ( prev, next );
+            roughMerge ( prevItem, nextItem );
           }
         });
         return prev;
       });
     }
 
-    const merged = roughMerge ( ...configs ) as any;
+    const merged = roughMerge ( config, ...otherConfigs ) as any;
 
     /* REMOVE UNGROUPED DUPLICATES */
 
