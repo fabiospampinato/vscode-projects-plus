@@ -9,32 +9,60 @@ import * as path from 'path';
 import * as pify from 'pify';
 import Utils from '../../utils';
 
+/* CACHE */
+
+const cacheFilename = '.vscode-projects-plus_branch-git-cache.json';
+
+async function readCache () {
+  return Utils.cache.read ( cacheFilename );
+}
+
+async function writeCache ( content ) {
+  return Utils.cache.write ( cacheFilename, content );
+}
+
 /* GIT */
 
-const cache: any = {};
+let cache;
 
-async function fetchBranchGit ( folderpath ) {
+async function fetchBranchGit ( folderpath, updateCache = true ) {
+
+  let returnVal;
 
   const gitPath = path.join ( folderpath, '.git' ),
         stat = await Utils.file.stat ( gitPath );
 
-  if ( !stat ) return;
+  if ( stat ) {
 
-  if ( cache[folderpath] && cache[folderpath].timestamp >= new Date ( stat.mtime ).getTime () ) return cache[folderpath].branch;
+    if ( !cache ) cache = await readCache ();
 
-  const command = 'git symbolic-ref --short HEAD --';
-  const result = await pify ( exec )( command, {
-    cwd: folderpath,
-    encoding: 'utf8'
-  });
-  const branch = _.trim ( result );
+    if ( cache[folderpath] && cache[folderpath].timestamp >= new Date ( stat.mtime ).getTime () ) {
 
-  cache[folderpath] = {
-    timestamp: new Date ().getTime (),
-    branch
-  };
+      returnVal = cache[folderpath].branch;
 
-  return branch;
+    } else {
+
+      const command = 'git symbolic-ref --short HEAD --';
+      const result = await pify ( exec )( command, {
+        cwd: folderpath,
+        encoding: 'utf8'
+      });
+      const branch = _.trim ( result );
+
+      cache[folderpath] = {
+        timestamp: new Date ().getTime (),
+        branch
+      };
+
+      returnVal = branch;
+
+    }
+
+  }
+
+  if ( updateCache ) await writeCache ( cache );
+
+  return returnVal;
 
 }
 

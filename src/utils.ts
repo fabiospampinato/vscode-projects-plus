@@ -4,6 +4,7 @@
 import * as _ from 'lodash';
 import * as fs from 'fs';
 import * as mkdirp from 'mkdirp';
+import * as os from 'os';
 import * as path from 'path';
 import * as pify from 'pify';
 import * as vscode from 'vscode';
@@ -82,6 +83,39 @@ const Utils = {
       } catch ( e ) {
         return;
       }
+
+    }
+
+  },
+
+  cache: {
+
+    getFilePath ( filename ) {
+
+      return path.join ( os.tmpdir (), filename );
+
+    },
+
+    async read ( filename, fallback = {} ) {
+
+      const filepath = Utils.cache.getFilePath ( filename ),
+            content = await Utils.file.read ( filepath );
+
+      if ( !content ) return fallback;
+
+      const parsed = _.attempt ( JSON.parse, content );
+
+      if ( _.isError ( parsed ) ) return fallback;
+
+      return parsed;
+
+    },
+
+    async write ( filename, content = {} ) {
+
+      const filepath = Utils.cache.getFilePath ( filename );
+
+      return Utils.file.write ( filepath, JSON.stringify ( content, undefined, 2 ) );
 
     }
 

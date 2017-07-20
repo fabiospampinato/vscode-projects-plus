@@ -1,3 +1,6 @@
+### Version 1.2.1
+- Caching `dirty` and `branch` information
+
 ### Version 1.2.0
 - Added ability to show a repository's branch next to its name
 

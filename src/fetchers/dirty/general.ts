@@ -6,13 +6,13 @@ import {fetchDirtyGit} from './git';
 
 /* GENERAL */
 
-async function fetchDirtyGeneral ( folderpath ) {
+async function fetchDirtyGeneral ( folderpath, updateCache = true ) {
 
   const fetchers = [fetchDirtyGit];
 
   for ( let fetcher of fetchers ) {
 
-    const result = await fetcher ( folderpath );
+    const result = await fetcher ( folderpath, updateCache );
 
     if ( _.isBoolean ( result ) ) return result;
 
@@ -26,9 +26,9 @@ async function fetchDirtyGeneralMulti ( folderpaths ) {
 
   const multi = {};
 
-  for ( let folderpath of folderpaths ) {
+  for ( let i = 0, l = folderpaths.length; i < l; i++ ) {
 
-    multi[folderpath] = await fetchDirtyGeneral ( folderpath );
+    multi[folderpaths[i]] = await fetchDirtyGeneral ( folderpaths[i], i === l - 1 );
 
   }
 

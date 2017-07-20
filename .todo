@@ -3,7 +3,4 @@
 ☐ Show an indeterminate progressbar when refreshing
 ☐ Add support for multi-root
 ☐ Add a `Project: Move` command
-☐ Cache `cache` objects between instances (use an app for this)
-  ☐ dirty
-  ☐ branch (?)
 ☐ Add support for nested groups switching even if groups' names aren't unique
