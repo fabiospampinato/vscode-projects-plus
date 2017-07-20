@@ -1,6 +1,7 @@
 
 /* EXPORT */
 
-export * from './descriptions';
+export * from './branch';
+export * from './description';
 export * from './dirty';
 export * from './projects';

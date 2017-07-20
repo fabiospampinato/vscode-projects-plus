@@ -3,7 +3,7 @@
   "displayName": "Projects+",
   "description": "An extension for managing projects. Feature rich, customizable, automatically finds your projects",
   "icon": "resources/logo-128x128.png",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "MIT",
   "main": "out/src/extension.js",
   "publisher": "fabiospampinato",
@@ -66,6 +66,21 @@
           "type": "boolean",
           "description": "Show projects' descriptions in the quickpick",
           "default": true
+        },
+        "projects.showBranch": {
+          "type": "boolean",
+          "description": "Show projects' branches in the quickpick",
+          "default": false
+        },
+        "projects.ignoreBranches": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Prevent these branches from being shown",
+          "default": [
+            "master"
+          ]
         },
         "projects.checkDirty": {
           "type": "boolean",

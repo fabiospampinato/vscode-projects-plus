@@ -1,3 +1,6 @@
+### Version 1.2.0
+- Added ability to show a repository's branch next to its name
+
 ### Version 1.1.0
 - Added ability to detect with projects are dirty
 

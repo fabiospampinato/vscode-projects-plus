@@ -11,9 +11,11 @@ It comes packed with a lot of features:
 - **Group switching**: if you have many groups, you can choose to view only projects belonging to a single one of them. Switching between groups is super easy.
 - **GitTower integration** (macOS): if you are already using the awesome [GitTower](https://www.git-tower.com) for managing your repositories this extension can automatically import your repositories!
 - **VSCode/Git/SVN integration**: it can find your VSCode/Git/SVN projects too.
-- **Check dirty state** (Git): by enabling the `projects.checkDirty` setting you can see at a glance which projects are dirty, having uncommitted changes, and which are not. If you have many projects the first time you open your projects list it may tike a bit.
-- **Check path existence**: by enabling the `projects.checkPaths` setting you can see at a glance which projects are currently usable. For instance if you have projects inside encrypted disk images this extension will basically tell you which are mounted and which are not.
 - **Customizable**: add icons, sort groups/repositories manually or by name, custom indentation width, hide paths/descriptions, switch paths/descriptions position, customizable statusbar component.
+- **Extra informations**: it can show you extra informations about your projects:
+  - **Branch** (Git): enable the `projects.showBranch` setting to have the branch of a repository displayed next to its name. You can filter out branches via the `projects.ignoreBranches` setting.
+  - **Dirty state** (Git): enable the `projects.checkDirty` setting to have an icon indicating that a repository is dirty (has uncommitted changes) next to its name. If you have many projects the first time you open your projects list it may tike a bit.
+  - **Path existence**: enable the `projects.checkPaths` setting to have an icon indicating which projects are currently non-openable next to their name. For instance if you have projects inside encrypted disk images this extension will basically tell you which are unmounted.
 
 ## Install
 
@@ -47,6 +49,8 @@ It adds 7 new commands to the command palette:
   "projects.invertPathAndDescription": false, // Invert a project path and description
   "projects.showPaths": true, // Show projects' paths in the quickpick
   "projects.showDescriptions": true, // Show projects' descriptions in the quickpick
+  "projects.showBranch": false, // Show projects' branches in the quickpick
+  "projects.ignoreBranches": ["master"], // Prevent these branches from being shown
   "projects.checkDirty": false, // Check projects' repositories for uncommitted changes
   "projects.checkPaths": false, // Check projects' paths existence
   "projects.group": "", // The active context group
@@ -111,8 +115,8 @@ The configuration is an object that looks like this:
 ## Hits:
 
 - **[Open in GitTower](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-open-in-gittower)**: use this extension for opening your projects in GitTower.
-- **Sync projects**: make `projects.configPath` point to your Dropbox directory to have it synced between computers.
 - **GitTower**: organize your repositories there and then run `Terminals: Refresh` to have this extension copy your configuration.
+- **Sync projects**: make `projects.configPath` point to your Dropbox directory to have it synced between computers.
 - **Icons**: [here](https://octicons.github.com/) you can browse a list of icons supported. If for instance you click the first icon, you'll get a page with `.octicon-alert` written in it, to get the string to use simply remove the `.octicon-` part, so in this case the icon name would be `alert`.
 
 ## License

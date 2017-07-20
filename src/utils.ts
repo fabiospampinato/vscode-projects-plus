@@ -8,6 +8,7 @@ import * as path from 'path';
 import * as pify from 'pify';
 import * as vscode from 'vscode';
 import * as Commands from './commands';
+import {fetchBranchGeneralMulti} from './fetchers/branch/general';
 import {fetchDirtyGeneralMulti} from './fetchers/dirty/general';
 
 /* UTILS */
@@ -323,7 +324,9 @@ const Utils = {
       const items = [],
             {rootPath} = vscode.workspace,
             projects = Utils.config.getProjects ( obj ),
-            dirtyData = config.checkDirty && !onlyGroups ? await fetchDirtyGeneralMulti ( projects.map ( p => p.path ) ) : {},
+            projectsPaths = projects.map ( project => project.path ),
+            dirtyData = config.checkDirty && !onlyGroups ? await fetchDirtyGeneralMulti ( projectsPaths ) : {},
+            branchData = config.showBranch && !onlyGroups ? await fetchBranchGeneralMulti ( projectsPaths ) : {},
             activeGroup = config.group && Utils.config.getGroupByName ( config, config.group ),
             activeProject = rootPath ? Utils.config.getProjectByPath ( config, rootPath ) : false;
 
@@ -381,6 +384,18 @@ const Utils = {
           project._iconsRight.push ( 'alert' );
 
         } else {
+
+          if ( config.showBranch && !onlyGroups ) {
+
+            const branch = branchData[project.path];
+
+            if ( branch && !_.includes ( config.ignoreBranches, branchData[project.path] ) ) {
+
+              project.name += `/${branch}`;
+
+            }
+
+          }
 
           if ( config.activeIndicator && !onlyGroups && activeProject && activeProject.path === project.path ) {
 
