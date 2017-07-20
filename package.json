@@ -3,7 +3,7 @@
   "displayName": "Projects+",
   "description": "An extension for managing projects. Feature rich, customizable, automatically finds your projects",
   "icon": "resources/logo-128x128.png",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "out/src/extension.js",
   "publisher": "fabiospampinato",
@@ -66,6 +66,11 @@
           "type": "boolean",
           "description": "Show projects' descriptions in the quickpick",
           "default": true
+        },
+        "projects.checkDirty": {
+          "type": "boolean",
+          "description": "Check projects' repositories for uncommitted changes",
+          "default": false
         },
         "projects.checkPaths": {
           "type": "boolean",

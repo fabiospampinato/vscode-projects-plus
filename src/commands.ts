@@ -53,7 +53,7 @@ async function open ( inNewWindow?, onlyGroups? ) {
 
   const config = await Config.get (),
         configFiltered = onlyGroups ? config : Utils.config.filterByGroup ( config, config.group ),
-        {items, projectsNr, groupsNr} = Utils.quickPick.makeItems ( config, configFiltered, 0, onlyGroups );
+        {items, projectsNr, groupsNr} = await Utils.quickPick.makeItems ( config, configFiltered, 0, onlyGroups );
 
   /* NO PROJECTS */
 

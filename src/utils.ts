@@ -8,6 +8,7 @@ import * as path from 'path';
 import * as pify from 'pify';
 import * as vscode from 'vscode';
 import * as Commands from './commands';
+import {fetchDirtyGeneralMulti} from './fetchers/dirty/general';
 
 /* UTILS */
 
@@ -70,6 +71,16 @@ const Utils = {
     async write ( filepath, content ) {
 
       return pify ( fs.writeFile )( filepath, content, {} );
+
+    },
+
+    async stat ( filepath ) {
+
+      try {
+        return await pify ( fs.stat )( filepath );
+      } catch ( e ) {
+        return;
+      }
 
     }
 
@@ -305,12 +316,14 @@ const Utils = {
 
     },
 
-    makeItems ( config, obj, initialDepth, onlyGroups? ) {
+    async makeItems ( config, obj, initialDepth, onlyGroups? ) {
 
       /* VARIABLES */
 
       const items = [],
             {rootPath} = vscode.workspace,
+            projects = Utils.config.getProjects ( obj ),
+            dirtyData = config.checkDirty && !onlyGroups ? await fetchDirtyGeneralMulti ( projects.map ( p => p.path ) ) : {},
             activeGroup = config.group && Utils.config.getGroupByName ( config, config.group ),
             activeProject = rootPath ? Utils.config.getProjectByPath ( config, rootPath ) : false;
 
@@ -326,7 +339,9 @@ const Utils = {
         };
 
         if ( config.activeIndicator && !activeGroup ) {
+
           allGroups._iconsLeft = ['arrow-small-right'];
+
         }
 
         items.push ( Utils.quickPick.makeItem ( config, allGroups, 0 ) );
@@ -338,12 +353,19 @@ const Utils = {
 
       /* ITEMS */
 
-      Utils.config.walk ( obj, _.noop, ( group, parent, depth ) => {
+      Utils.config.walk ( obj, obj => {
+
+        obj._iconsLeft = [];
+        obj._iconsRight = [];
+
+      }, ( group, parent, depth ) => {
 
         if ( !group.name || !group.projects ) return;
 
         if ( config.activeIndicator && onlyGroups && activeGroup && activeGroup.name === group.name ) {
-          group._iconsLeft = ['arrow-small-right'];
+
+          group._iconsLeft.push ( 'arrow-small-right' );
+
         }
 
         items.push ( Utils.quickPick.makeItem ( config, group, initialDepth + depth ) );
@@ -356,11 +378,21 @@ const Utils = {
 
         if ( config.checkPaths && !Utils.folder.exists ( project.path ) ) {
 
-          project._iconsRight = ['alert'];
+          project._iconsRight.push ( 'alert' );
 
-        } else if ( config.activeIndicator && !onlyGroups && activeProject && activeProject.path === project.path ) {
+        } else {
 
-          project._iconsLeft = ['arrow-small-right'];
+          if ( config.activeIndicator && !onlyGroups && activeProject && activeProject.path === project.path ) {
+
+            project._iconsLeft.push ( 'arrow-small-right' );
+
+          }
+
+          if ( config.checkDirty && dirtyData[project.path] ) {
+
+            project._iconsRight.push ( 'cloud-upload' );
+
+          }
 
         }
 
