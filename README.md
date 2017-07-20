@@ -28,12 +28,12 @@ It adds 7 new commands to the command palette:
 
 ```js
 'Project: Open' // Open a project in this window (cmd+alt+p on Mac, ctrl+alt+p Elsewhere)
-'Project: Open in new window' // Open a project in a new window (cmd+alt+shift+p on Mac, ctrl+alt+shift++p Elsewhere)
+'Project: Open in New Window' // Open a project in a new window (cmd+alt+shift+p on Mac, ctrl+alt+shift++p Elsewhere)
 'Project: Save' // Save this project in the configuration file
 'Project: Remove' // Remove this project from the configuration file
-'Projects: Edit configuration' // Open the configuration file
+'Projects: Edit Configuration' // Open the configuration file
 'Projects: Refresh' // Automatically find projects
-'Projects: Switch group' // Change context to another group (cmd+alt+x on Mac, ctrl+alt+x Elsewhere)
+'Projects: Switch Group' // Change context to another group (cmd+alt+x on Mac, ctrl+alt+x Elsewhere)
 ```
 
 ## Settings
@@ -62,7 +62,7 @@ It adds 7 new commands to the command palette:
 
 ## Configuration
 
-Run the `Projects: Edit configuration` command to create the configuration file. By default it uses a file named `vscode_projects.json` under your home directory, you can change this by supplying a custom path using the `projects.configPath` setting entry.
+Run the `Projects: Edit Configuration` command to create the configuration file. By default it uses a file named `vscode_projects.json` under your home directory, you can change this by supplying a custom path using the `projects.configPath` setting entry.
 
 The configuration is an object that looks like this:
 

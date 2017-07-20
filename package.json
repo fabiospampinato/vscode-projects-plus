@@ -136,7 +136,7 @@
     "commands": [
       {
         "command": "projects.editConfig",
-        "title": "Projects: Edit configuration"
+        "title": "Projects: Edit Configuration"
       },
       {
         "command": "projects.open",
@@ -144,7 +144,7 @@
       },
       {
         "command": "projects.openInNewWindow",
-        "title": "Project: Open in new window"
+        "title": "Project: Open in New Window"
       },
       {
         "command": "projects.refresh",
@@ -160,7 +160,7 @@
       },
       {
         "command": "projects.switchGroup",
-        "title": "Projects: Switch group"
+        "title": "Projects: Switch Group"
       }
     ],
     "keybindings": [
