@@ -1,7 +1,9 @@
 
 ☐ Add shortcuts for each project
 ☐ Show an indeterminate progressbar when refreshing
-☐ Add support for multi-root
 ☐ Add a `Project: Move` command (Subset of Save)
-☐ Add a `Project: Edit` command (Subset of Save)
+☐ Add a `Project: Edit` command (Just an alias for Save)
+☐ Add support for multi-root
+☐ Add support for adding projects to the statusbar for easy switching
 ☐ Add support for nested groups switching even if groups' names aren't unique
+☐ Make configPath point to the default user settings folder (can be synced with the Sync extension) in a backward compatible manner
