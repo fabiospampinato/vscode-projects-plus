@@ -1,3 +1,6 @@
+### Version 1.2.5
+- Improved Windows support
+
 ### Version 1.2.1
 - Caching `dirty` and `branch` information
 
