@@ -86,9 +86,13 @@ async function open ( inNewWindow?, onlyGroups? ) {
 
   if ( path ) { // Project
 
+    if ( path === vscode.workspace.rootPath ) return vscode.window.showWarningMessage ( `"${name}" is already the opened project` );
+
     return Utils.folder.open ( path, inNewWindow );
 
   } else { // Group
+
+    // if ( name === config.group ) return vscode.window.showWarningMessage ( `"${name}" is already the active group` ); // Probably annoying, and it requires a bit more work to make it work with the `All Groups` special group
 
     return Utils.config.switchGroup ( config, name );
 

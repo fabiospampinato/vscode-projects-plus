@@ -1,3 +1,6 @@
+### Version 1.3.5
+- Warn when trying to open to the currently active project
+
 ### Version 1.2.5
 - Improved Windows support
 
