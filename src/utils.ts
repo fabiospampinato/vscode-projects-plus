@@ -167,7 +167,7 @@ const Utils = {
 
       if ( obj.groups ) { // Running it now ensures that groups are always on top
 
-        const groups = sortGroups ? _.sortBy ( obj.groups, 'name' ) : obj.groups;
+        const groups = sortGroups ? _.sortBy ( obj.groups, group => group['name'].toLowerCase () ) : obj.groups;
 
         groups.forEach ( group => {
 
@@ -183,7 +183,7 @@ const Utils = {
 
       if ( obj.projects ) {
 
-        const projects = sortProjects ? _.sortBy ( obj.projects, 'name' ) : obj.projects;
+        const projects = sortProjects ? _.sortBy ( obj.projects, project => project['name'].toLowerCase () ) : obj.projects;
 
         projects.forEach ( project => {
 

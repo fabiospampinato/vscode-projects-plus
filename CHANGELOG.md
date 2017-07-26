@@ -1,3 +1,6 @@
+### Version 1.3.7
+- Ensuring a case-insensitive sort
+
 ### Version 1.3.5
 - Warn when trying to open to the currently active project
 
