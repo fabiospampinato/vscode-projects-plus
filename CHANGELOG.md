@@ -1,3 +1,6 @@
+### Version 1.4.7
+- Added support for detecting untracked files (Git)
+
 ### Version 1.3.7
 - Ensuring a case-insensitive sort
 

@@ -41,12 +41,24 @@ async function fetchDirtyGit ( folderpath, updateCache = true ) {
 
     } else {
 
-      const command = 'git diff-index --quiet HEAD -- || echo "dirty"';
-      const result = await pify ( exec )( command, {
+      const execOptions = {
         cwd: folderpath,
         encoding: 'utf8'
-      });
-      const dirty = !!result;
+      };
+
+      const command = 'git diff-index --quiet HEAD -- || echo "dirty"';
+      const result = await pify ( exec )( command, execOptions );
+
+      let dirty = !!result;
+
+      if ( !dirty ) {
+
+        const command = 'git ls-files --other --directory --no-empty-directory --exclude-standard';
+        const result = await pify ( exec )( command, execOptions );
+
+        dirty = !!result;
+
+      }
 
       cache[folderpath] = {
         timestamp: new Date ().getTime (),
