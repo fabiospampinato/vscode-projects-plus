@@ -54,6 +54,7 @@ It adds 7 new commands to the command palette:
   "projects.checkDirty": false, // Check projects' repositories for uncommitted changes
   "projects.checkPaths": false, // Check projects' paths existence
   "projects.filterDirty": false, // List only dirty projects
+  "projects.filterRegex": false, // List only projects having a name matching this regex
   "projects.group": "", // The active context group
   "projects.allGroupsName": "All Groups", // A setting for renaming the "All Groups" special group
   "projects.refreshDepth": 2, // Maximum depth to look at when refreshing

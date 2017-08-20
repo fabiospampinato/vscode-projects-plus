@@ -432,6 +432,8 @@ const Utils = {
 
         if ( config.filterDirty && !dirtyData[project.path] ) return;
 
+        if ( config.filterRegex && !project.name.match ( new RegExp ( config.filterRegex ) ) ) return;
+
         if ( config.checkPaths && !Utils.folder.exists ( project.path ) ) {
 
           project._iconsRight.push ( 'alert' );

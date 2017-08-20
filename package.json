@@ -3,7 +3,7 @@
   "displayName": "Projects+",
   "description": "An extension for managing projects. Feature rich, customizable, automatically finds your projects",
   "icon": "resources/logo-128x128.png",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "license": "MIT",
   "main": "out/src/extension.js",
   "publisher": "fabiospampinato",
@@ -95,6 +95,11 @@
         "projects.filterDirty": {
           "type": "boolean",
           "description": "List only dirty projects",
+          "default": false
+        },
+        "projects.filterRegex": {
+          "type": "string",
+          "description": "List only projects having a name matching this regex",
           "default": false
         },
         "projects.group": {

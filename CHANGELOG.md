@@ -1,3 +1,6 @@
+### Version 1.6.0
+- Added a `projects.filterRegex` option
+
 ### Version 1.5.0
 - Added a `projects.filterDirty` option
 
