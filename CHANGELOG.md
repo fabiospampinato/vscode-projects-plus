@@ -1,3 +1,6 @@
+### Version 1.5.0
+- Added a `projects.filterDirty` option
+
 ### Version 1.4.7
 - Added support for detecting untracked files (Git)
 

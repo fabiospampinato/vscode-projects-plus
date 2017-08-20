@@ -53,6 +53,7 @@ It adds 7 new commands to the command palette:
   "projects.ignoreBranches": ["master"], // Prevent these branches from being shown
   "projects.checkDirty": false, // Check projects' repositories for uncommitted changes
   "projects.checkPaths": false, // Check projects' paths existence
+  "projects.filterDirty": false, // List only dirty projects
   "projects.group": "", // The active context group
   "projects.allGroupsName": "All Groups", // A setting for renaming the "All Groups" special group
   "projects.refreshDepth": 2, // Maximum depth to look at when refreshing

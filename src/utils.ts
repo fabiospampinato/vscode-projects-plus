@@ -376,7 +376,7 @@ const Utils = {
             {rootPath} = vscode.workspace,
             projects = Utils.config.getProjects ( obj ),
             projectsPaths = projects.map ( project => project.path ),
-            dirtyData = config.checkDirty && !onlyGroups ? await fetchDirtyGeneralMulti ( projectsPaths ) : {},
+            dirtyData = ( config.checkDirty || config.filterDirty ) && !onlyGroups ? await fetchDirtyGeneralMulti ( projectsPaths ) : {},
             branchData = config.showBranch && !onlyGroups ? await fetchBranchGeneralMulti ( projectsPaths ) : {},
             activeGroup = config.group && Utils.config.getGroupByName ( config, config.group ),
             activeProject = rootPath ? Utils.config.getProjectByPath ( config, rootPath ) : false;
@@ -430,6 +430,8 @@ const Utils = {
 
         if ( !project.name || !project.path || onlyGroups ) return;
 
+        if ( config.filterDirty && !dirtyData[project.path] ) return;
+
         if ( config.checkPaths && !Utils.folder.exists ( project.path ) ) {
 
           project._iconsRight.push ( 'alert' );
@@ -454,7 +456,7 @@ const Utils = {
 
           }
 
-          if ( config.checkDirty && dirtyData[project.path] ) {
+          if ( ( config.checkDirty || config.filterDirty ) && dirtyData[project.path] ) {
 
             project._iconsRight.push ( 'cloud-upload' );
 
