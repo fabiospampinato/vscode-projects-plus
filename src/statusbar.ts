@@ -69,7 +69,7 @@ class Statusbar {
 
   updateCommand () {
 
-    this.item.command = this.config.statubarCommand;
+    this.item.command = this.config.statusbarCommand;
 
   }
 

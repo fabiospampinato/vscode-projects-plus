@@ -141,7 +141,7 @@
           "description": "Enable the statusbar component",
           "default": true
         },
-        "projects.statubarCommand": {
+        "projects.statusbarCommand": {
           "type": "string",
           "description": "Command to execute on click",
           "default": "projects.open"

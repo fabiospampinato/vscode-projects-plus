@@ -61,7 +61,7 @@ It adds 7 new commands to the command palette:
   "projects.sortGroups": true, // Sort groups alphabetically
   "projects.sortProjects": true, // Sort projects alphabetically
   "projects.statusbarEnabled": true, // Enable the statusbar component
-  "projects.statubarCommand": 'projects.open', // Command to execute on click
+  "projects.statusbarCommand": 'projects.open', // Command to execute on click
   "projects.statusbarTemplate": '$(file-directory) [group] $(chevron-right) [project]' // Template for rendering the statusbar content
 }
 ```
