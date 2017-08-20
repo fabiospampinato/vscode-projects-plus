@@ -6,7 +6,6 @@ import * as os from 'os';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import Utils from './utils';
-import Statusbar from './statusbar';
 
 /* CONFIG */
 
@@ -60,6 +59,8 @@ const Config = {
     const newConfig = _.omit ( config, ['configPath'] );
 
     await Utils.file.write ( filepath, JSON.stringify ( newConfig, undefined, 2 ) );
+
+    const {default: Statusbar} = require ( './statusbar' ); // In order to avoid cyclic dependency
 
     Statusbar.update ();
 
