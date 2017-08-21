@@ -39,6 +39,14 @@ It adds 7 new commands to the command palette:
 'Projects: Switch Group' // Change context to another group (cmd+alt+x on Mac, ctrl+alt+x Elsewhere)
 ```
 
+It adds 3 shortcuts:
+
+```js
+'Cmd/Ctrl+Alt+P' // Triggers `Project: Open`
+'Cmd/Ctrl+Alt+Shift+P' // Triggers `Project: Open in New Window`
+'Cmd/Ctrl+Alt+X' // Triggers `Projects: Switch Group`
+```
+
 ## Settings
 
 ```js
