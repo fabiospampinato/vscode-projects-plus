@@ -9,3 +9,5 @@
 ☐ Make configPath point to the default user settings folder (can be synced with the Sync extension) in a backward compatible manner
 ☐ Keep track of opened projects and show them at the top (enables easy space switching)(maybe add a section about this to the explorer)
 ☐ Fix active project showed on top of the others (distracting)(test by searching for "vscode-")
+☐ Contribute an explorer view
+  ☐ https://code.visualstudio.com/docs/extensionAPI/extension-points#_contributesviews

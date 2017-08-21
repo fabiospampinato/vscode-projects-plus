@@ -122,9 +122,13 @@ The configuration is an object that looks like this:
 
 ![Auto-import projects](resources/statusbar.gif)
 
+## Related:
+
+- **[Projects+ Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-projects-plus-todo-plus)**: Bird's-eye view over your projects, view all your todo files aggregated into one.
+- **[Open in GitTower](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-open-in-gittower)**: use this extension for opening your projects in GitTower.
+
 ## Hits:
 
-- **[Open in GitTower](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-open-in-gittower)**: use this extension for opening your projects in GitTower.
 - **GitTower**: organize your repositories there and then run `Terminals: Refresh` to have this extension copy your configuration.
 - **Sync projects**: make `projects.configPath` point to a file in your Dropbox directory to have it synced between computers.
 - **Icons**: [here](https://octicons.github.com/) you can browse a list of icons supported. If for instance you click the first icon, you'll get a page with `.octicon-alert` written in it, to get the string to use simply remove the `.octicon-` part, so in this case the icon name would be `alert`.
