@@ -1,6 +1,5 @@
 
 Now:
-  ☐ `sortGroups` and `sortProjects` are not properly implemented @check @today
   ☐ projects' dirty status is not updating @high
   ☐ Views: Add context menu items
 

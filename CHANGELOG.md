@@ -1,3 +1,6 @@
+### Version 1.7.2
+- Fixed `projects.sortGroups` and `projects.sortProjects` options
+
 ### Version 1.7.1
 - Documented `Projects` explorer
 

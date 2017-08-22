@@ -8,6 +8,7 @@ import * as os from 'os';
 import * as path from 'path';
 import * as pify from 'pify';
 import * as vscode from 'vscode';
+import Config from './config';
 import * as Commands from './commands';
 import {fetchBranchGeneralMulti} from './fetchers/branch/general';
 import {fetchDirtyGeneralMulti} from './fetchers/dirty/general';
@@ -191,7 +192,7 @@ const Utils = {
 
     /* CONFIG */
 
-    walk ( obj, objCallback, groupCallback, projectCallback, sortGroups = true, sortProjects = true, _parent = false, depth = 0 ) {
+    walk ( obj, objCallback, groupCallback, projectCallback, sortGroups = Config.getExtension ().sortGroups, sortProjects = Config.getExtension ().sortProjects, _parent = false, depth = 0 ) { //FIXME: We should call `await Config.get ()`, but that's async and will break things
 
       if ( obj.groups ) { // Running it now ensures that groups are always on top
 
