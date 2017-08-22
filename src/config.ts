@@ -63,6 +63,7 @@ const Config = {
     const {default: Statusbar} = require ( './statusbar' ); // In order to avoid cyclic dependency
 
     Statusbar.update ();
+    Utils.ui.refresh ();
 
   },
 

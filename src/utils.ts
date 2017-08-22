@@ -11,12 +11,16 @@ import * as vscode from 'vscode';
 import * as Commands from './commands';
 import {fetchBranchGeneralMulti} from './fetchers/branch/general';
 import {fetchDirtyGeneralMulti} from './fetchers/dirty/general';
+import ViewAll from './views/all';
+import ViewItem from './views/item';
 
 /* UTILS */
 
 const Utils = {
 
   initCommands ( context: vscode.ExtensionContext ) {
+
+    /* CONTRIBUTIONS */
 
     const {commands} = vscode.extensions.getExtension ( 'fabiospampinato.vscode-projects-plus' ).packageJSON.contributes;
 
@@ -30,7 +34,31 @@ const Utils = {
 
     });
 
+    /* HARD CODED */
+
+    ['projects.openProject'].forEach ( command => {
+
+      const commandName = _.last ( command.split ( '.' ) ) as string,
+            handler = Commands[commandName],
+            disposable = vscode.commands.registerCommand ( command, handler );
+
+      context.subscriptions.push ( disposable );
+
+    });
+
     return Commands;
+
+  },
+
+  initViews ( context: vscode.ExtensionContext ) {
+
+    /* ALL */
+
+    const viewAll = new ViewAll ();
+
+    vscode.window.registerTreeDataProvider ( 'projects.views.all', viewAll );
+
+    Utils.ui.views.push ( viewAll );
 
   },
 
@@ -345,30 +373,51 @@ const Utils = {
 
   },
 
-  quickPick: {
+  icons: {
 
-    makeItem ( config, obj, depth ) {
+    toASCII ( str ) {
 
-      const depthSpaces = _.repeat ( '\u00A0', config.indentationSpaces * depth ), // ' ' will be trimmed
-            icon = obj.icon ? `$(${obj.icon}) ` : '',
-            _iconsLeft = obj._iconsLeft ? obj._iconsLeft.map ( icon => `$(${icon}) ` ).join ( '' ) : '', //TODO: Make this public
-            _iconsRight = obj._iconsRight ? obj._iconsRight.map ( icon => ` $(${icon})` ).join ( '' ) : '', //TODO: Make this public
-            name = `${depthSpaces}${_iconsLeft}${icon}${obj.name}${_iconsRight}`,
-            path = config.showPaths && obj.path,
-            description = config.showDescriptions && obj.description,
-            topDetail = config.invertPathAndDescription ? description : path,
-            bottomDetail = config.invertPathAndDescription ? ( path ? `${depthSpaces}${path}` : '' ) : ( description ? `${depthSpaces}${description}` : '' );
-
-      return {
-        obj,
-        label: name,
-        description: topDetail,
-        detail: bottomDetail
+      const Oct2ASCII = {
+        'arrow-small-right': '→',
+        'cloud-upload': '↑',
+        'alert': '△'
       };
+
+      _.forOwn ( Oct2ASCII, ( ASCII, Oct ) => {
+
+        str = str.replace ( `$(${Oct})`, ASCII );
+
+      });
+
+      return str;
 
     },
 
-    async makeItems ( config, obj, initialDepth, onlyGroups? ) {
+    strip ( str ) {
+
+      return str.replace ( /\$\([^\)]+\)/gm, '' ).trim ();
+
+    }
+
+  },
+
+  ui: {
+
+    views: [],
+
+    refresh () {
+
+      Utils.ui.views.forEach ( view => view.refresh () );
+
+    },
+
+    refreshInterval ( interval ) {
+
+      setInterval ( Utils.ui.refresh, interval );
+
+    },
+
+    async makeItems ( config, obj, itemMaker: Function, initialDepth = 0, maxDepth = Infinity, onlyGroups: boolean = false ) {
 
       /* VARIABLES */
 
@@ -398,10 +447,11 @@ const Utils = {
 
         }
 
-        items.push ( Utils.quickPick.makeItem ( config, allGroups, 0 ) );
+        items.push ( itemMaker ( config, allGroups, 0 ) );
 
         groupsNr++;
         initialDepth++;
+        maxDepth++;
 
       }
 
@@ -414,6 +464,8 @@ const Utils = {
 
       }, ( group, parent, depth ) => {
 
+        if ( depth > maxDepth ) return;
+
         if ( !group.name || !group.projects ) return;
 
         if ( config.activeIndicator && onlyGroups && activeGroup && activeGroup.name === group.name ) {
@@ -422,11 +474,13 @@ const Utils = {
 
         }
 
-        items.push ( Utils.quickPick.makeItem ( config, group, initialDepth + depth ) );
+        items.push ( itemMaker ( config, group, initialDepth + depth ) );
 
         groupsNr++;
 
       }, ( project, parent, depth ) => {
+
+        if ( depth > maxDepth ) return;
 
         if ( !project.name || !project.path || onlyGroups ) return;
 
@@ -466,13 +520,76 @@ const Utils = {
 
         }
 
-        items.push ( Utils.quickPick.makeItem ( config, project, initialDepth + depth ) );
+        items.push ( itemMaker ( config, project, initialDepth + depth ) );
 
         projectsNr++;
 
       });
 
       return {items, projectsNr, groupsNr};
+
+    },
+
+    makeQuickPickItem ( config, obj, depth ) {
+
+      const depthSpaces = _.repeat ( '\u00A0', config.indentationSpaces * depth ), // ' ' will be trimmed
+            icon = obj.icon ? `$(${obj.icon}) ` : '',
+            _iconsLeft = obj._iconsLeft ? obj._iconsLeft.map ( icon => `$(${icon}) ` ).join ( '' ) : '', //TODO: Make this public
+            _iconsRight = obj._iconsRight ? obj._iconsRight.map ( icon => ` $(${icon})` ).join ( '' ) : '', //TODO: Make this public
+            path = config.showPaths && obj.path,
+            description = config.showDescriptions && obj.description,
+            topDetail = config.invertPathAndDescription ? description : path,
+            bottomDetail = config.invertPathAndDescription ? ( path ? `${depthSpaces}${path}` : '' ) : ( description ? `${depthSpaces}${description}` : '' );
+
+      let name = `${depthSpaces}${_iconsLeft}${icon}${obj.name}${_iconsRight}`;
+
+      if ( config.iconsASCII ) {
+
+        name = Utils.icons.toASCII ( name );
+
+      }
+
+      return {
+        obj,
+        label: name,
+        description: topDetail,
+        detail: bottomDetail
+      };
+
+    },
+
+    makeViewItem ( config, obj, depth ) {
+
+      const icon = obj.icon ? `$(${obj.icon}) ` : '',
+            _iconsLeft = obj._iconsLeft ? obj._iconsLeft.map ( icon => `$(${icon}) ` ).join ( '' ) : '', //TODO: Make this public
+            _iconsRight = obj._iconsRight ? obj._iconsRight.map ( icon => ` $(${icon})` ).join ( '' ) : ''; //TODO: Make this public
+
+      let name = `${_iconsLeft}${icon}${obj.name}${_iconsRight}`;
+
+      if ( config.iconsASCII ) {
+
+        name = Utils.icons.toASCII ( name );
+
+      }
+
+      name = Utils.icons.strip ( name ); //FIXME: Required because of https://github.com/Microsoft/vscode/issues/32956
+
+      if ( obj.path ) { // Project
+
+        const command = {
+          title: 'open',
+          tooltip: `Open ${obj.name}`,
+          command: 'projects.openProject',
+          arguments: [obj]
+        };
+
+        return new ViewItem ( obj, name, command, vscode.TreeItemCollapsibleState.None );
+
+      } else { // Group
+
+        return new ViewItem ( obj, obj.name );
+
+      }
 
     }
 

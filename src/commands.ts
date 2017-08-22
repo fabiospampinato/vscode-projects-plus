@@ -53,7 +53,7 @@ async function open ( inNewWindow?, onlyGroups? ) {
 
   const config = await Config.get (),
         configFiltered = onlyGroups ? config : Utils.config.filterByGroup ( config, config.group ),
-        {items, projectsNr, groupsNr} = await Utils.quickPick.makeItems ( config, configFiltered, 0, onlyGroups );
+        {items, projectsNr, groupsNr} = await Utils.ui.makeItems ( config, configFiltered, Utils.ui.makeQuickPickItem, 0, Infinity, onlyGroups );
 
   /* NO PROJECTS */
 
@@ -86,9 +86,7 @@ async function open ( inNewWindow?, onlyGroups? ) {
 
   if ( path ) { // Project
 
-    if ( path === vscode.workspace.rootPath ) return vscode.window.showWarningMessage ( `"${name}" is already the opened project` );
-
-    return Utils.folder.open ( path, inNewWindow );
+    return openProject ( selected.obj, inNewWindow );
 
   } else { // Group
 
@@ -103,6 +101,17 @@ async function open ( inNewWindow?, onlyGroups? ) {
 async function openInNewWindow () {
 
   return open ( true );
+
+}
+
+function openProject ( project, inNewWindow: boolean = false ) {
+
+  const {name, path} = project,
+        isCurrent = path === vscode.workspace.rootPath;
+
+  if ( isCurrent ) return vscode.window.showWarningMessage ( `"${name}" is already the opened project` );
+
+  return Utils.folder.open ( path, inNewWindow );
 
 }
 
@@ -240,4 +249,4 @@ async function switchGroup () {
 
 /* EXPORT */
 
-export {initConfig, editConfig, open, openInNewWindow, refresh, remove, save, switchGroup};
+export {initConfig, editConfig, open, openInNewWindow, openProject, refresh, remove, save, switchGroup};

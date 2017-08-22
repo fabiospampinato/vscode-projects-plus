@@ -1,13 +1,22 @@
 
-☐ Add shortcuts for each project
-☐ Show an indeterminate progressbar when refreshing
-☐ Add a `Project: Move` command (Subset of Save)
-☐ Add a `Project: Edit` command (Just an alias for Save)
-☐ Add support for multi-root
-☐ Add support for adding projects to the statusbar for easy switching
-☐ Add support for nested groups switching even if groups' names aren't unique
-☐ Make configPath point to the default user settings folder (can be synced with the Sync extension) in a backward compatible manner
-☐ Keep track of opened projects and show them at the top (enables easy space switching)(maybe add a section about this to the explorer)
-☐ Fix active project showed on top of the others (distracting)(test by searching for "vscode-")
-☐ Contribute an explorer view
-  ☐ https://code.visualstudio.com/docs/extensionAPI/extension-points#_contributesviews
+Now:
+  ☐ `sortGroups` and `sortProjects` are not properly implemented @check @today
+  ☐ projects' dirty status is not updating @high
+  ☐ Views: Add context menu items
+
+Next:
+  ☐ Add a `projects.favorites` view
+  ☐ Add support for multi-root
+  ☐ Fix active project showed on top of the others (distracting)(test by searching for "vscode-")
+
+Future:
+  ☐ Show an indeterminate progressbar when refreshing
+  ☐ Add support for nested groups switching even if groups' names aren't unique
+
+Maybe:
+  ☐ Add configurable shortcuts for each project
+  ☐ Add support for adding projects to the statusbar for easy switching
+  ☐ Add a `Project: Move` command (Subset of Save)
+  ☐ Add a `Project: Edit` command (Just an alias for Save)
+  ☐ Make configPath point to the default user settings folder (can be synced with the Sync extension) in a backward compatible manner
+  ☐ Add a `projects.recents` view

@@ -1,7 +1,7 @@
 # VSC Projects+
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/fabiospampinato/vscode-projects-plus/master/resources/logo-128x128.png" alt="Logo">
+	<img src="https://raw.githubusercontent.com/fabiospampinato/vscode-projects-plus/master/resources/logo/logo-128x128.png" alt="Logo">
 </p>
 
 An extension for managing projects. Feature rich, customizable, automatically finds your projects.
@@ -53,6 +53,7 @@ It adds 3 shortcuts:
 {
   "projects.activeIndicator": true, // Show an active indicator next to the name
   "projects.configPath": "/path/to/projects.json", // The location of the configuration file
+  "projects.iconsASCII": true, // Use ASCII icons instead of Octicons
   "projects.indentationSpaces": 4, // Number of spaces to use for indentation
   "projects.invertPathAndDescription": false, // Invert a project path and description
   "projects.showPaths": true, // Show projects' paths in the quickpick
@@ -72,7 +73,8 @@ It adds 3 shortcuts:
   "projects.sortProjects": true, // Sort projects alphabetically
   "projects.statusbarEnabled": true, // Enable the statusbar component
   "projects.statusbarCommand": 'projects.open', // Command to execute on click
-  "projects.statusbarTemplate": '$(file-directory) [group] $(chevron-right) [project]' // Template for rendering the statusbar content
+  "projects.statusbarTemplate": '$(file-directory) [group] $(chevron-right) [project]', // Template for rendering the statusbar content
+  "projects.viewsRefreshInterval": 30000 // Milliseconds between explorer's views refreshes
 }
 ```
 
@@ -104,23 +106,23 @@ The configuration is an object that looks like this:
 
 #### Auto-import projects:
 
-![Auto-import projects](resources/refresh.gif)
+![Auto-import projects](resources/demo/refresh.gif)
 
 #### Save project:
 
-![Auto-import projects](resources/save.gif)
+![Auto-import projects](resources/demo/save.gif)
 
 #### Group switching:
 
-![Auto-import projects](resources/switch.gif)
+![Auto-import projects](resources/demo/switch.gif)
 
 #### QuickPick customizations:
 
-![Auto-import projects](resources/quickpick.gif)
+![Auto-import projects](resources/demo/quickpick.gif)
 
 #### Statusbar customizations:
 
-![Auto-import projects](resources/statusbar.gif)
+![Auto-import projects](resources/demo/statusbar.gif)
 
 ## Related:
 

@@ -2,8 +2,8 @@
   "name": "vscode-projects-plus",
   "displayName": "Projects+",
   "description": "An extension for managing projects. Feature rich, customizable, automatically finds your projects",
-  "icon": "resources/logo-128x128.png",
-  "version": "1.6.1",
+  "icon": "resources/logo/logo-128x128.png",
+  "version": "1.7.0",
   "license": "MIT",
   "main": "out/src/extension.js",
   "publisher": "fabiospampinato",
@@ -19,7 +19,7 @@
     "url": "https://github.com/fabiospampinato/vscode-projects-plus"
   },
   "engines": {
-    "vscode": "^1.10.0"
+    "vscode": "^1.13.0"
   },
   "keywords": [
     "vscode",
@@ -46,6 +46,11 @@
         "projects.configPath": {
           "type": "string",
           "description": "The location of the configuration file"
+        },
+        "projects.iconsASCII": {
+          "type": "boolean",
+          "description": "Use ASCII icons instead of Octicons",
+          "default": true
         },
         "projects.indentationSpaces": {
           "type": "number",
@@ -160,13 +165,22 @@
           "type": "string",
           "description": "Template for rendering the statusbar content",
           "default": "$(file-directory) [group] $(chevron-right) [project]"
+        },
+        "projects.viewsRefreshInterval": {
+          "type": "number",
+          "description": "Milliseconds between explorer's views refreshes",
+          "default": 30000
         }
       }
     },
     "commands": [
       {
         "command": "projects.editConfig",
-        "title": "Projects: Edit Configuration"
+        "title": "Projects: Edit Configuration",
+        "icon": {
+          "light": "resources/icons/options_light.svg",
+          "dark": "resources/icons/options_dark.svg"
+        }
       },
       {
         "command": "projects.open",
@@ -178,7 +192,11 @@
       },
       {
         "command": "projects.refresh",
-        "title": "Projects: Refresh"
+        "title": "Projects: Refresh",
+        "icon": {
+          "light": "resources/icons/refresh_light.svg",
+          "dark": "resources/icons/refresh_dark.svg"
+        }
       },
       {
         "command": "projects.remove",
@@ -209,7 +227,29 @@
         "key": "ctrl+alt+x",
         "mac": "cmd+alt+x"
       }
-    ]
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "projects.views.all",
+          "name": "Projects"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "projects.editConfig",
+          "when": "view == projects.views.all",
+          "group": "navigation"
+        },
+        {
+          "command": "projects.refresh",
+          "when": "view == projects.views.all",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",

@@ -1,3 +1,8 @@
+### Version 1.7.0
+- Added a `Projects` view to the explorer
+- Added a `projects.iconsASCII` setting
+- Replaced Octicons with ASCII icons
+
 ### Version 1.6.1
 - Updated readme
 
