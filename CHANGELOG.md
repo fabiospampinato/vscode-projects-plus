@@ -1,3 +1,6 @@
+### Version 1.7.1
+- Documented `Projects` explorer
+
 ### Version 1.7.0
 - Added a `Projects` view to the explorer
 - Added a `projects.iconsASCII` setting
