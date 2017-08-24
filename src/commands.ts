@@ -104,6 +104,31 @@ async function openInNewWindow () {
 
 }
 
+async function openByName ( name, inNewWindow?, isGroup? ) {
+
+  const config = await Config.get (),
+        objCallback = obj => {
+          if ( obj.name === name && !!obj.path === !isGroup ) found = obj;
+        };
+
+  let found;
+
+  Utils.config.walk ( config, objCallback, _.noop, _.noop );
+
+  if ( !found ) return;
+
+  if ( isGroup ) {
+
+    return Utils.config.switchGroup ( config, found.name );
+
+  } else {
+
+    return openProject ( found, inNewWindow );
+
+  }
+
+}
+
 function openProject ( project, inNewWindow: boolean = false ) {
 
   const {name, path} = project,
@@ -249,4 +274,4 @@ async function switchGroup () {
 
 /* EXPORT */
 
-export {initConfig, editConfig, open, openInNewWindow, openProject, refresh, remove, save, switchGroup};
+export {initConfig, editConfig, open, openInNewWindow, openByName, openProject, refresh, remove, save, switchGroup};
