@@ -138,6 +138,7 @@ The configuration is an object that looks like this:
 
 - **GitTower**: organize your repositories there and then run `Terminals: Refresh` to have this extension copy your configuration.
 - **Sync projects**: make `projects.configPath` point to a file in your Dropbox directory to have it synced between computers.
+- **[Commands](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-commands)**: Use this other extension and the `projects.openByName` command to add buttons to the statusbar for easy switching between projects or groups.
 - **Icons**: [here](https://octicons.github.com/) you can browse a list of supported icons. If for instance you click the first icon, you'll get a page with `.octicon-alert` written in it, to get the string to use simply remove the `.octicon-` part, so in this case the icon name would be `alert`.
 
 ## License
