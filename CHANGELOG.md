@@ -1,3 +1,6 @@
+### Version 1.8.0
+- Added a `projects.openByName` command
+
 ### Version 1.7.2
 - Fixed `projects.sortGroups` and `projects.sortProjects` options
 

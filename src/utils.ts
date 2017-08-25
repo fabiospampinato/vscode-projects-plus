@@ -37,7 +37,7 @@ const Utils = {
 
     /* HARD CODED */
 
-    ['projects.openProject'].forEach ( command => {
+    ['projects.openProject', 'projects.openByName'].forEach ( command => {
 
       const commandName = _.last ( command.split ( '.' ) ) as string,
             handler = Commands[commandName],
