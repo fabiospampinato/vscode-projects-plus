@@ -150,12 +150,13 @@ async function refresh () {
 
   if ( !didFind && !config.refreshRoots.length ) return vscode.window.showErrorMessage ( 'No projects found, add some paths to the "projects.refreshRoots" setting' );
 
-  const configFile = await Config.getFile ( config.configPath ),
-        configMerged = Config.merge ( {}, configFile, ...data ) as any,
-        configEnhanced = await enhanceWithDescriptions ( configMerged );
+  const configFile = await Config.getFile ( config.configPath );
+  if (configFile !== undefined){
+    const configMerged = Config.merge ( {}, configFile, ...data ) as any,
+          configEnhanced = await enhanceWithDescriptions ( configMerged );
 
-  await Config.write ( config.configPath, configEnhanced );
-
+    await Config.write ( config.configPath, configEnhanced );
+  }
   return open ();
 
 }
