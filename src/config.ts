@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
+import * as JSON5 from 'json5';
 import * as os from 'os';
 import * as path from 'path';
 import * as vscode from 'vscode';
@@ -35,7 +36,7 @@ const Config = {
 
     if ( !file ) return;
 
-    const config = _.attempt ( JSON.parse, file );
+    const config: any = _.attempt ( JSON5.parse, file );
 
     if ( _.isError ( config ) ) return;
 
