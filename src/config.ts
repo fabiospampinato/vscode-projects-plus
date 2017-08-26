@@ -92,9 +92,9 @@ const Config = {
 
     if ( merged.groups && merged.projects ) {
 
-      const paths = Utils.config.getProjectsPaths ({ groups: merged.groups });
+      const paths = Utils.config.getProjectsPaths ({ groups: merged.groups }).map ( path => path.toLowerCase () );
 
-      merged.projects = merged.projects.filter ( project => !_.includes ( paths, project.path ) );
+      merged.projects = merged.projects.filter ( project => !_.includes ( paths, project.path.toLowerCase () ) );
 
     }
 
