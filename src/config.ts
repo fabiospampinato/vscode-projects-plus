@@ -32,13 +32,35 @@ const Config = {
 
   async getFile ( filepath ) {
 
-    const file = await Utils.file.read ( filepath );
+    const content = await Utils.file.read ( filepath );
 
-    if ( !file ) return;
+    if ( !content || !content.trim () ) return;
 
-    const config: any = _.attempt ( JSON5.parse, file );
+    const config: any = _.attempt ( JSON5.parse, content );
 
-    if ( _.isError ( config ) ) return;
+    if ( _.isError ( config ) ) {
+
+      const option = await vscode.window.showErrorMessage ( '[Projects+] Your configuration file contains improperly formatted JSON', { title: 'Overwrite' }, { title: 'Edit' } );
+
+      if ( option && option.title === 'Overwrite' ) {
+
+        await Utils.file.write ( filepath, '{}' );
+
+        return {};
+
+      } else {
+
+        if ( option && option.title === 'Edit' ) {
+
+          Utils.file.open ( filepath );
+
+        }
+
+        throw new Error ( 'Can\'t read improperly formatted configuration file' );
+
+      }
+
+    }
 
     return config;
 
@@ -76,7 +98,7 @@ const Config = {
       return _.mergeWith ( config, ...otherConfigs, ( prev, next ) => {
         if ( !_.isArray ( prev ) || !_.isArray ( next ) ) return;
         next.forEach ( nextItem => {
-          const prevItem = prev.find ( prevItem => prevItem.name === nextItem.name );
+          const prevItem = prev.find ( prevItem => prevItem.name === nextItem.name ); //FIXME: Maybe check if they have the same path
           if ( !prevItem ) {
             prev.push ( nextItem );
           } else {

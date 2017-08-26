@@ -1,3 +1,8 @@
+### Version 1.8.1
+- Ensuring case different in projects’ paths doesn’t lead to projects duplication
+- Using JSON5 in order to be more human-friendly
+- Ensuring the configuration file won’t get overwritten by accident
+
 ### Version 1.8.0
 - Added a `projects.openByName` command
 
