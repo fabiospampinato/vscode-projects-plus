@@ -200,9 +200,9 @@ const Utils = {
 
         groups.forEach ( group => {
 
-          objCallback ( group, groups, depth );
+          objCallback ( group, obj, depth );
 
-          groupCallback ( group, groups, depth );
+          groupCallback ( group, obj, depth );
 
           Utils.config.walk ( group, objCallback, groupCallback, projectCallback, sortGroups, sortProjects, group, depth + 1 );
 

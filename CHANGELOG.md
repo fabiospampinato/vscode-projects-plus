@@ -1,3 +1,6 @@
+### Version 1.8.2
+- Fixed a minor bug
+
 ### Version 1.8.1
 - Ensuring case different in projects’ paths doesn’t lead to projects duplication
 - Using JSON5 in order to be more human-friendly
