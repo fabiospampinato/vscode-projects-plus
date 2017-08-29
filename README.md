@@ -31,13 +31,13 @@ ext install vscode-projects-plus
 It adds 7 new commands to the command palette:
 
 ```js
-'Project: Open' // Open a project in this window (cmd+alt+p on Mac, ctrl+alt+p Elsewhere)
-'Project: Open in New Window' // Open a project in a new window (cmd+alt+shift+p on Mac, ctrl+alt+shift++p Elsewhere)
+'Project: Open' // Open a project
+'Project: Open in New Window' // Open a project in a new window
 'Project: Save' // Save this project in the configuration file
 'Project: Remove' // Remove this project from the configuration file
 'Projects: Edit Configuration' // Open the configuration file
 'Projects: Refresh' // Automatically find projects
-'Projects: Switch Group' // Change context to another group (cmd+alt+x on Mac, ctrl+alt+x Elsewhere)
+'Projects: Switch Group' // Change context to another group
 ```
 
 It adds 3 shortcuts:
@@ -122,13 +122,13 @@ The configuration is an object that looks like this:
 
 ![Auto-import projects](resources/demo/quickpick.gif)
 
-#### Statusbar customizations:
+#### StatusBar customizations:
 
 ![Auto-import projects](resources/demo/statusbar.gif)
 
-#### Explorer view
+#### Explorer view:
 
-![Explorer view](resources/demo/explorer.gif);
+![Explorer view](resources/demo/explorer.gif)
 
 ## Related:
 

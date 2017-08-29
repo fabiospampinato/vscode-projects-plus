@@ -1,3 +1,6 @@
+### Version 1.10.1
+- Updated readme
+
 ### Version 1.10.0
 - Added a `groupsOnTop` option
 
