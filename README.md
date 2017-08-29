@@ -56,7 +56,7 @@ It adds 3 shortcuts:
   "projects.configPath": "/path/to/projects.json", // The location of the configuration file
   "projects.iconsASCII": true, // Use ASCII icons instead of Octicons
   "projects.indentationSpaces": 4, // Number of spaces to use for indentation
-  "projects.invertPathAndDescription": false, // Invert a project path and description
+  "projects.invertPathAndDescription": false, // Invert a project path and description in the quickpick
   "projects.showPaths": true, // Show projects' paths in the quickpick
   "projects.showDescriptions": true, // Show projects' descriptions in the quickpick
   "projects.showBranch": false, // Show projects' branches in the quickpick

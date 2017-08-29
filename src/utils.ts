@@ -13,7 +13,8 @@ import * as Commands from './commands';
 import {fetchBranchGeneralMulti} from './fetchers/branch/general';
 import {fetchDirtyGeneralMulti} from './fetchers/dirty/general';
 import ViewAll from './views/all';
-import ViewItem from './views/item';
+import ViewProjectItem from './views/items/project';
+import ViewGroupItem from './views/items/group';
 
 /* UTILS */
 
@@ -29,7 +30,8 @@ const Utils = {
 
       const commandName = _.last ( command.split ( '.' ) ) as string,
             handler = Commands[commandName],
-            disposable = vscode.commands.registerCommand ( command, () => handler () );
+            proxy = commandName.startsWith ( 'view' ) ? handler : () => handler (), //FIXME: Ugly
+            disposable = vscode.commands.registerCommand ( command, proxy );
 
       context.subscriptions.push ( disposable );
 
@@ -584,11 +586,11 @@ const Utils = {
           arguments: [obj]
         };
 
-        return new ViewItem ( obj, name, command, vscode.TreeItemCollapsibleState.None );
+        return new ViewProjectItem ( obj, name, command, vscode.TreeItemCollapsibleState.None );
 
       } else { // Group
 
-        return new ViewItem ( obj, obj.name );
+        return new ViewGroupItem ( obj, obj.name );
 
       }
 

@@ -1,3 +1,6 @@
+### Version 1.9.0
+- Added right-click actions to the explorer view
+
 ### Version 1.8.2
 - Fixed a minor bug
 

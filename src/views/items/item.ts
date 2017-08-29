@@ -9,6 +9,8 @@ class Item extends vscode.TreeItem {
 
   obj;
 
+  contextValue = 'item';
+
   constructor ( obj, label: string, command?: vscode.Command, collapsibleState: vscode.TreeItemCollapsibleState = vscode.TreeItemCollapsibleState.Expanded ) {
 
     super ( label, collapsibleState );

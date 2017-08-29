@@ -1,7 +1,7 @@
 
 /* IMPORT */
 
-import Item from './item';
+import Item from './items/item';
 import View from './view';
 import Config from '../config';
 import Utils from '../utils';

@@ -3,7 +3,7 @@
   "displayName": "Projects+",
   "description": "An extension for managing projects. Feature rich, customizable, automatically finds your projects",
   "icon": "resources/logo/logo-128x128.png",
-  "version": "1.8.2",
+  "version": "1.9.0",
   "license": "MIT",
   "main": "out/src/extension.js",
   "publisher": "fabiospampinato",
@@ -209,6 +209,18 @@
       {
         "command": "projects.switchGroup",
         "title": "Projects: Switch Group"
+      },
+      {
+        "command": "projects.viewOpenProject",
+        "title": "Open"
+      },
+      {
+        "command": "projects.viewOpenProjectInNewWindow",
+        "title": "Open in New Window"
+      },
+      {
+        "command": "projects.viewSwitchGroup",
+        "title": "Switch Group"
       }
     ],
     "keybindings": [
@@ -237,6 +249,20 @@
       ]
     },
     "menus": {
+      "commandPalette": [
+        {
+          "command": "projects.viewOpenProject",
+          "when": "false"
+        },
+        {
+          "command": "projects.viewOpenProjectInNewWindow",
+          "when": "false"
+        },
+        {
+          "command": "projects.viewSwitchGroup",
+          "when": "false"
+        }
+      ],
       "view/title": [
         {
           "command": "projects.editConfig",
@@ -247,6 +273,20 @@
           "command": "projects.refresh",
           "when": "view == projects.views.all",
           "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "projects.viewOpenProject",
+          "when": "view == projects.views.all && viewItem == project"
+        },
+        {
+          "command": "projects.viewOpenProjectInNewWindow",
+          "when": "view == projects.views.all && viewItem == project"
+        },
+        {
+          "command": "projects.viewSwitchGroup",
+          "when": "view == projects.views.all && viewItem == group"
         }
       ]
     }

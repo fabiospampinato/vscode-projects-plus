@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import * as vscode from 'vscode';
-import Item from './item';
+import Item from './items/item';
 
 /* VIEW */
 

@@ -9,7 +9,22 @@ import * as vscode from 'vscode';
 import Config from './config';
 import * as Fetchers from './fetchers';
 import Utils from './utils';
+import ViewProjectItem from './views/items/project';
+import ViewGroupItem from './views/items/group';
 const {fetchPathDescription, enhanceWithDescriptions, fetchProjectsFolders, fetchProjectsGitTower} = Fetchers; //FIXME: Importing them directly doesn't work for some reason
+
+/* HELPERS */
+
+function openProject ( project, inNewWindow: boolean = false ) {
+
+  const {name, path} = project,
+        isCurrent = path === vscode.workspace.rootPath;
+
+  if ( isCurrent ) return vscode.window.showWarningMessage ( `"${name}" is already the opened project` );
+
+  return Utils.folder.open ( path, inNewWindow );
+
+}
 
 /* COMMANDS */
 
@@ -126,17 +141,6 @@ async function openByName ( name, inNewWindow?, isGroup? ) {
     return openProject ( found, inNewWindow );
 
   }
-
-}
-
-function openProject ( project, inNewWindow: boolean = false ) {
-
-  const {name, path} = project,
-        isCurrent = path === vscode.workspace.rootPath;
-
-  if ( isCurrent ) return vscode.window.showWarningMessage ( `"${name}" is already the opened project` );
-
-  return Utils.folder.open ( path, inNewWindow );
 
 }
 
@@ -272,6 +276,28 @@ async function switchGroup () {
 
 }
 
+/* VIEW COMMANDS */
+
+function viewOpenProject ( Item: ViewProjectItem ) {
+
+  return openProject ( Item.obj );
+
+}
+
+function viewOpenProjectInNewWindow ( Item: ViewProjectItem ) {
+
+  return openProject ( Item.obj, true );
+
+}
+
+async function viewSwitchGroup ( Item: ViewGroupItem ) {
+
+  const config = await Config.get ();
+
+  return Utils.config.switchGroup ( config, Item.obj.name );
+
+}
+
 /* EXPORT */
 
-export {initConfig, editConfig, open, openInNewWindow, openByName, openProject, refresh, remove, save, switchGroup};
+export {initConfig, editConfig, open, openInNewWindow, openByName, openProject, refresh, remove, save, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewSwitchGroup};
