@@ -1,10 +1,9 @@
 
 Now:
-  ☐ Add a `groupsFirst` setting (configurable to potentially only do it on the first depth level)
+  ☐ Add support for multi-root
+  ☐ Add a `projects.favorites` view
 
 Next:
-  ☐ Add a `projects.favorites` view
-  ☐ Add support for multi-root
   ☐ Fix active project showed on top of the others (distracting)(test by searching for "vscode-")
 
 Future:

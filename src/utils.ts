@@ -194,37 +194,48 @@ const Utils = {
 
     /* CONFIG */
 
-    walk ( obj, objCallback, groupCallback, projectCallback, sortGroups = Config.getExtension ().sortGroups, sortProjects = Config.getExtension ().sortProjects, _parent = false, depth = 0 ) { //FIXME: We should call `await Config.get ()`, but that's async and will break things
+    walk ( obj, objCallback, groupCallback, projectCallback, sortGroups = Config.getExtension ().sortGroups, sortProjects = Config.getExtension ().sortProjects, _parent = false, depth = 0, groupsOnTop = Config.getExtension ().groupsOnTop ) { //FIXME: We should call `await Config.get ()`, but that's async and will break things
 
-      if ( obj.groups ) { // Running it now ensures that groups are always on top
+      const isGroupsOnTopValid = sortGroups && sortProjects,
+            groups = obj.groups
+                       ? sortGroups
+                         ? _.sortBy ( obj.groups, group => group['name'].toLowerCase () )
+                         : obj.groups
+                       : [],
+            projects = obj.projects
+                         ? sortProjects
+                           ? _.sortBy ( obj.projects, project => project['name'].toLowerCase () )
+                           : obj.projects
+                         : [],
+            items = [];
 
-        const groups = sortGroups ? _.sortBy ( obj.groups, group => group['name'].toLowerCase () ) : obj.groups;
+      if ( groupsOnTop && isGroupsOnTopValid ) {
 
-        groups.forEach ( group => {
+        items.push ( ...groups, ...projects );
 
-          objCallback ( group, obj, depth );
+      } else {
 
-          groupCallback ( group, obj, depth );
-
-          Utils.config.walk ( group, objCallback, groupCallback, projectCallback, sortGroups, sortProjects, group, depth + 1 );
-
-        });
-
-      }
-
-      if ( obj.projects ) {
-
-        const projects = sortProjects ? _.sortBy ( obj.projects, project => project['name'].toLowerCase () ) : obj.projects;
-
-        projects.forEach ( project => {
-
-          objCallback ( project, obj, depth );
-
-          projectCallback ( project, obj, depth );
-
-        });
+        items.push ( ..._.sortBy ( [...groups, ...projects], [item => item.name.toLowerCase ()] ) );
 
       }
+
+      items.forEach ( item => {
+
+        objCallback ( item, obj, depth );
+
+        if ( item.path ) { // Project
+
+          projectCallback ( item, obj, depth );
+
+        } else {
+
+          groupCallback ( item, obj, depth );
+
+          Utils.config.walk ( item, objCallback, groupCallback, projectCallback, sortGroups, sortProjects, obj, depth + 1, groupsOnTop );
+
+        }
+
+      });
 
     },
 
