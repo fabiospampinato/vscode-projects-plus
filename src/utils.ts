@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
+import {exec} from 'child_process';
 import * as fs from 'fs';
 import * as mkdirp from 'mkdirp';
 import * as os from 'os';
@@ -62,6 +63,22 @@ const Utils = {
     vscode.window.registerTreeDataProvider ( 'projects.views.all', viewAll );
 
     Utils.ui.views.push ( viewAll );
+
+  },
+
+  async exec ( command: string, options = {}, fallback? ) {
+
+    try {
+
+      return await pify ( exec )( command, options );
+
+    } catch ( e ) {
+
+      console.error ( e );
+
+      return _.isUndefined ( fallback ) ? e : fallback;
+
+    }
 
   },
 

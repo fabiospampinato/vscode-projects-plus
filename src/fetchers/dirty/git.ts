@@ -1,11 +1,9 @@
 
-
 /* IMPORT */
 
-import {exec} from 'child_process';
+import * as _ from 'lodash';
 import * as  fs from 'fs';
 import * as path from 'path';
-import * as pify from 'pify';
 import Utils from '../../utils';
 
 /* CACHE */
@@ -35,28 +33,28 @@ async function fetchDirtyGit ( folderpath, updateCache = true ) {
 
     if ( !cache ) cache = await readCache ();
 
-    if ( cache[folderpath] && cache[folderpath].timestamp >= new Date ( stat.mtime ).getTime () ) {
+    if ( cache[folderpath] && !_.isNull ( cache[folderpath].dirty ) && cache[folderpath].timestamp >= new Date ( stat.mtime ).getTime () ) {
 
       returnVal = cache[folderpath].dirty;
 
     } else {
 
-      const execOptions = {
+      const commandOptions = {
         cwd: folderpath,
         encoding: 'utf8'
       };
 
-      const command = 'git diff-index --quiet HEAD -- || echo "dirty"';
-      const result = await pify ( exec )( command, execOptions );
+      const command = 'git diff-index --quiet HEAD -- || echo "dirty"',
+            result = await Utils.exec ( command, commandOptions, null );
 
-      let dirty = !!result;
+      let dirty = _.isNull ( result ) ? result : !!result;
 
-      if ( !dirty ) {
+      if ( !_.isNull ( dirty ) && !dirty ) {
 
-        const command = 'git ls-files --other --directory --no-empty-directory --exclude-standard';
-        const result = await pify ( exec )( command, execOptions );
+        const command = 'git ls-files --other --directory --no-empty-directory --exclude-standard',
+              result = await Utils.exec ( command, commandOptions, null );
 
-        dirty = !!result;
+        dirty = _.isNull ( result ) ? result : !!result;
 
       }
 

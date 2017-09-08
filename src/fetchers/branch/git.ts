@@ -3,10 +3,8 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
-import {exec} from 'child_process';
 import * as  fs from 'fs';
 import * as path from 'path';
-import * as pify from 'pify';
 import Utils from '../../utils';
 
 /* CACHE */
@@ -36,18 +34,19 @@ async function fetchBranchGit ( folderpath, updateCache = true ) {
 
     if ( !cache ) cache = await readCache ();
 
-    if ( cache[folderpath] && cache[folderpath].timestamp >= new Date ( stat.mtime ).getTime () ) {
+    if ( cache[folderpath] && cache[folderpath].branch && cache[folderpath].timestamp >= new Date ( stat.mtime ).getTime () ) {
 
       returnVal = cache[folderpath].branch;
 
     } else {
 
-      const command = 'git symbolic-ref --short HEAD --';
-      const result = await pify ( exec )( command, {
-        cwd: folderpath,
-        encoding: 'utf8'
-      });
-      const branch = _.trim ( result );
+      const command = 'git symbolic-ref --short HEAD --',
+            commandOptions = {
+              cwd: folderpath,
+              encoding: 'utf8'
+            },
+            result = await Utils.exec ( command, commandOptions, '' ),
+            branch = _.trim ( result );
 
       cache[folderpath] = {
         timestamp: new Date ().getTime (),
