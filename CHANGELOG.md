@@ -1,3 +1,7 @@
+### Version 1.10.2
+- Executing shell commands in a more resilient manner
+- `Projects: Refresh` now also clears up cache files
+
 ### Version 1.10.1
 - Updated readme
 
