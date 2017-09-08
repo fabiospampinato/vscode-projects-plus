@@ -6,17 +6,25 @@ import * as  fs from 'fs';
 import * as path from 'path';
 import Utils from '../../utils';
 
-/* CACHE */
+/* GIT CACHE */
 
-const cacheFilename = '.vscode-projects-plus_dirty-git-cache.json';
+const DirtyGitCache = {
 
-async function readCache () {
-  return Utils.cache.read ( cacheFilename );
-}
+  filename: '.vscode-projects-plus_dirty-git-cache.json',
 
-async function writeCache ( content ) {
-  return Utils.cache.write ( cacheFilename, content );
-}
+  read () {
+    return Utils.cache.read ( DirtyGitCache.filename );
+  },
+
+  write ( content ) {
+    return Utils.cache.write ( DirtyGitCache.filename, content );
+  },
+
+  delete () {
+    return Utils.cache.delete ( DirtyGitCache.filename );
+  }
+
+};
 
 /* GIT */
 
@@ -31,7 +39,7 @@ async function fetchDirtyGit ( folderpath, updateCache = true ) {
 
   if ( stat ) {
 
-    if ( !cache ) cache = await readCache ();
+    if ( !cache ) cache = await DirtyGitCache.read ();
 
     if ( cache[folderpath] && !_.isNull ( cache[folderpath].dirty ) && cache[folderpath].timestamp >= new Date ( stat.mtime ).getTime () ) {
 
@@ -69,7 +77,7 @@ async function fetchDirtyGit ( folderpath, updateCache = true ) {
 
   }
 
-  if ( updateCache ) await writeCache ( cache );
+  if ( updateCache ) await DirtyGitCache.write ( cache );
 
   return returnVal;
 
@@ -77,4 +85,4 @@ async function fetchDirtyGit ( folderpath, updateCache = true ) {
 
 /* EXPORT */
 
-export {fetchDirtyGit};
+export {DirtyGitCache, fetchDirtyGit};

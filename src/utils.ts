@@ -137,6 +137,18 @@ const Utils = {
 
     },
 
+    async delete ( filepath ) {
+
+      return pify ( fs.unlink )( filepath );
+
+    },
+
+    deleteSync ( filepath ) {
+
+      return fs.unlinkSync ( filepath );
+
+    },
+
     async stat ( filepath ) {
 
       try {
@@ -177,6 +189,14 @@ const Utils = {
       const filepath = Utils.cache.getFilePath ( filename );
 
       return Utils.file.write ( filepath, JSON.stringify ( content, undefined, 2 ) );
+
+    },
+
+    async delete ( filename ) {
+
+      const filepath = Utils.cache.getFilePath ( filename );
+
+      return Utils.file.delete ( filepath );
 
     }
 

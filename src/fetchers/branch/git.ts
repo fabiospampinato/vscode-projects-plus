@@ -9,15 +9,23 @@ import Utils from '../../utils';
 
 /* CACHE */
 
-const cacheFilename = '.vscode-projects-plus_branch-git-cache.json';
+const BranchGitCache = {
 
-async function readCache () {
-  return Utils.cache.read ( cacheFilename );
-}
+  filename: '.vscode-projects-plus_branch-git-cache.json',
 
-async function writeCache ( content ) {
-  return Utils.cache.write ( cacheFilename, content );
-}
+  read () {
+    return Utils.cache.read ( BranchGitCache.filename );
+  },
+
+  write ( content ) {
+    return Utils.cache.write ( BranchGitCache.filename, content );
+  },
+
+  delete () {
+    return Utils.cache.delete ( BranchGitCache.filename );
+  }
+
+};
 
 /* GIT */
 
@@ -32,7 +40,7 @@ async function fetchBranchGit ( folderpath, updateCache = true ) {
 
   if ( stat ) {
 
-    if ( !cache ) cache = await readCache ();
+    if ( !cache ) cache = await BranchGitCache.read ();
 
     if ( cache[folderpath] && cache[folderpath].branch && cache[folderpath].timestamp >= new Date ( stat.mtime ).getTime () ) {
 
@@ -59,7 +67,7 @@ async function fetchBranchGit ( folderpath, updateCache = true ) {
 
   }
 
-  if ( updateCache ) await writeCache ( cache );
+  if ( updateCache ) await BranchGitCache.write ( cache );
 
   return returnVal;
 
@@ -67,4 +75,4 @@ async function fetchBranchGit ( folderpath, updateCache = true ) {
 
 /* EXPORT */
 
-export {fetchBranchGit};
+export {BranchGitCache, fetchBranchGit};
