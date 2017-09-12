@@ -48,24 +48,13 @@ async function fetchDirtyGit ( folderpath, updateCache = true ) {
 
     } else {
 
-      const commandOptions = {
-        cwd: folderpath,
-        encoding: 'utf8'
-      };
-
-      const command = 'git diff-index --quiet HEAD -- || echo "dirty"',
-            result = await Utils.exec ( command, commandOptions, null );
-
-      let dirty = _.isNull ( result ) ? result : !!result;
-
-      if ( !_.isNull ( dirty ) && !dirty ) {
-
-        const command = 'git ls-files --other --directory --no-empty-directory --exclude-standard',
-              result = await Utils.exec ( command, commandOptions, null );
-
-        dirty = _.isNull ( result ) ? result : !!result;
-
-      }
+      const command = 'git status --porcelain --untracked-files | tail -n1',
+            commandOptions = {
+              cwd: folderpath,
+              encoding: 'utf8'
+            },
+            result = await Utils.exec ( command, commandOptions, null ),
+            dirty = _.isNull ( result ) ? result : !!result;
 
       cache[folderpath] = {
         timestamp: new Date ().getTime (),
