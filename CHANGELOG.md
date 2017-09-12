@@ -1,3 +1,7 @@
+### Version 1.10.3
+- Git: updated command for checking for dirtiness
+- Ensuring local caches get cleared
+
 ### Version 1.10.2
 - Executing shell commands in a more resilient manner
 - `Projects: Refresh` now also clears up cache files
