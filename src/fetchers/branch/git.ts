@@ -9,6 +9,8 @@ import Utils from '../../utils';
 
 /* CACHE */
 
+let cache;
+
 const BranchGitCache = {
 
   filename: '.vscode-projects-plus_branch-git-cache.json',
@@ -22,14 +24,13 @@ const BranchGitCache = {
   },
 
   delete () {
+    cache = undefined;
     return Utils.cache.delete ( BranchGitCache.filename );
   }
 
 };
 
 /* GIT */
-
-let cache;
 
 async function fetchBranchGit ( folderpath, updateCache = true ) {
 

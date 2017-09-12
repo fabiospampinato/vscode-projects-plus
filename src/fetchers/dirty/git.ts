@@ -8,6 +8,8 @@ import Utils from '../../utils';
 
 /* GIT CACHE */
 
+let cache;
+
 const DirtyGitCache = {
 
   filename: '.vscode-projects-plus_dirty-git-cache.json',
@@ -21,14 +23,13 @@ const DirtyGitCache = {
   },
 
   delete () {
+    cache = undefined;
     return Utils.cache.delete ( DirtyGitCache.filename );
   }
 
 };
 
 /* GIT */
-
-let cache;
 
 async function fetchDirtyGit ( folderpath, updateCache = true ) {
 
