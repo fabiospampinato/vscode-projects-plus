@@ -1,3 +1,6 @@
+### Version 1.11.0
+- Added basic Mercurial support
+
 ### Version 1.10.3
 - Git: updated command for checking for dirtiness
 - Ensuring local caches get cleared
