@@ -148,7 +148,7 @@ async function refresh () {
 
   const config = await Config.get (),
         dataGitTower = await fetchProjectsGitTower (),
-        dataGeneral = await fetchProjectsFolders ( config.refreshRoots, config.refreshDepth, config.refreshIgnoreFolders, ['.vscode', '.git', '.svn'] ),
+        dataGeneral = await fetchProjectsFolders ( config.refreshRoots, config.refreshDepth, config.refreshIgnoreFolders, ['.vscode', '.git', '.svn', '.hg'] ),
         data = [dataGitTower, dataGeneral],
         didFind = data.some ( config => !_.isEqual ( config, {} ) );
 

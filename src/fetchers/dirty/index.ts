@@ -1,5 +1,5 @@
 
-//TODO: Add support for other sources (SVN)
+//TODO: Add support for other sources (SVN/HG)
 
 /* EXPORT */
 

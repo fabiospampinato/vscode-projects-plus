@@ -10,7 +10,7 @@ It comes packed with a lot of features:
 - **Groups**: if you have many projects you'll find the ability to separate them into groups pretty valuable. Groups can be nested indefinitely.
 - **Group switching**: if you have many groups, you can choose to view only projects belonging to a single one of them. Switching between groups is super easy.
 - **GitTower integration** (macOS): if you are already using the awesome [GitTower](https://www.git-tower.com) for managing your repositories this extension can automatically import your repositories!
-- **VSCode/Git/SVN integration**: it can find your VSCode/Git/SVN projects too.
+- **VSCode/Git/SVN/HG integration**: it can find your VSCode, Git, SubVersion and Mercurial projects too.
 - **Customizable**: add icons, sort groups/repositories manually or by name, custom indentation width, hide paths/descriptions, switch paths/descriptions position, customizable statusbar component.
 - **Explorer view**: it adds an explorer view for easy switching between projects.
 - **Extra informations**: it can show you extra informations about your projects:
