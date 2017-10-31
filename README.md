@@ -76,7 +76,8 @@ It adds 3 shortcuts:
   "projects.statusbarEnabled": true, // Enable the statusbar component
   "projects.statusbarCommand": 'projects.open', // Command to execute on click
   "projects.statusbarTemplate": '$(file-directory) [group] $(chevron-right) [project]', // Template for rendering the statusbar content
-  "projects.viewsRefreshInterval": 30000 // Milliseconds between explorer's views refreshes
+  "projects.viewsRefreshInterval": 30000, // Milliseconds between explorer's views refreshes
+  "projects.viewAllEnabled": true // Show or hide the "Projects" explorer view
 }
 ```
 

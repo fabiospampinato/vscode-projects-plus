@@ -175,6 +175,11 @@
           "type": "number",
           "description": "Milliseconds between explorer's views refreshes",
           "default": 30000
+        },
+        "projects.viewAllEnabled": {
+          "type": "boolean",
+          "description": "Show or hide the \"Projects\" explorer view",
+          "default": true
         }
       }
     },
@@ -249,7 +254,8 @@
       "explorer": [
         {
           "id": "projects.views.all",
-          "name": "Projects"
+          "name": "Projects",
+          "when": "config.projects.viewAllEnabled == true"
         }
       ]
     },
