@@ -196,7 +196,9 @@ const Utils = {
 
       const filepath = Utils.cache.getFilePath ( filename );
 
-      return Utils.file.delete ( filepath );
+      try { // It may not exist anymore
+        await Utils.file.delete ( filepath );
+      } catch ( e ) {}
 
     }
 
