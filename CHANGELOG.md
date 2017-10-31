@@ -1,3 +1,8 @@
+### Version 1.11.1
+- Added an option for hiding the explorer view
+- Ensuring `refresh` can’t be executed multiple times simultaneously
+- Ensuring cache file deletion never throws an error
+
 ### Version 1.11.0
 - Added basic Mercurial support
 
