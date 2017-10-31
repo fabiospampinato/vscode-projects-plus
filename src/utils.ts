@@ -82,6 +82,24 @@ const Utils = {
 
   },
 
+  async singleExecution ( callback, ...args ) { // Avoids running the callback multiple times simultaneously
+
+    if ( callback.__executing ) return;
+
+    callback.__executing = true;
+
+    try {
+
+      return await callback ( ...args );
+
+    } finally {
+
+      callback.__executing = false;
+
+    }
+
+  },
+
   file: {
 
     open ( filepath, isTextDocument = true ) {

@@ -144,7 +144,13 @@ async function openByName ( name, inNewWindow?, isGroup? ) {
 
 }
 
-async function refresh () {
+function refresh () { // In order to avoid race conditions
+
+  Utils.singleExecution ( _refresh );
+
+}
+
+async function _refresh () {
 
   const config = await Config.get (),
         dataGitTower = await fetchProjectsGitTower (),
@@ -163,7 +169,7 @@ async function refresh () {
   await BranchGitCache.delete ();
   await DirtyGitCache.delete ();
 
-  return open ();
+  return await open ();
 
 }
 
