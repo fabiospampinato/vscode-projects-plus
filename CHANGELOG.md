@@ -1,3 +1,7 @@
+### Version 1.12.0
+- Added multi-root support
+- Statusbar: added support for custom alignment and priority
+
 ### Version 1.11.1
 - Added an option for hiding the explorer view
 - Ensuring `refresh` can’t be executed multiple times simultaneously
