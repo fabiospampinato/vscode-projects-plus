@@ -1,6 +1,7 @@
 
 /* IMPORT */
 
+import * as _ from 'lodash';
 import * as vscode from 'vscode';
 import Config from './config';
 import Utils from './utils';
@@ -9,13 +10,16 @@ import Utils from './utils';
 
 class Statusbar {
 
-  item; config; rootPath; project; group;
+  item; itemProps; config; rootPath; project; group; _updateDebounced;
 
   constructor () {
 
     this.item = this._initItem ();
+    this.itemProps = {};
+    this._updateDebounced = _.debounce ( this.update.bind ( this ), 100 );
 
-    vscode.workspace.onDidChangeConfiguration ( this.update.bind ( this ) );
+    vscode.workspace.onDidChangeConfiguration ( () => this._updateDebounced () );
+    vscode.window.onDidChangeActiveTextEditor ( () => this._updateDebounced () );
 
     this.update ();
 
@@ -57,6 +61,22 @@ class Statusbar {
 
   }
 
+  _setItemProp ( prop, value, _set = true ) {
+
+    if ( this.itemProps[prop] === value ) return false;
+
+    this.itemProps[prop] = value;
+
+    if ( _set ) {
+
+      this.item[prop] = value;
+
+    }
+
+    return true;
+
+  }
+
   async update ( config? ) {
 
     this.config = config || await Config.get ();
@@ -71,7 +91,7 @@ class Statusbar {
 
   updateVariables () {
 
-    this.rootPath = vscode.workspace.rootPath;
+    this.rootPath = Utils.folder.getActiveRootPath ();
     this.project = this.rootPath && Utils.config.getProjectByPath ( this.config, this.rootPath );
     this.group = this.project && Utils.config.getProjectGroup ( this.config, this.rootPath );
 
@@ -79,33 +99,41 @@ class Statusbar {
 
   updateCommand () {
 
-    this.item.command = this.config.statusbarCommand;
+    const command = this.config.statusbarCommand;
+
+    this._setItemProp ( 'command', command );
 
   }
 
   updateTooltip () {
 
-    this.item.tooltip = this.rootPath || 'No project opened';
+    const tooltip = this.rootPath || 'No project opened';
+
+    this._setItemProp ( 'tooltip', tooltip );
 
   }
 
   updateText () {
 
-    let text = this._getTemplate ();
+    let template = this._getTemplate ();
 
-    if ( this.group ) text = text.replace ( /\[group\]/ig, this.group.name );
+    if ( this.group ) template = template.replace ( /\[group\]/ig, this.group.name );
 
-    text = text.replace ( /\[project\]/ig, this.project ? this.project.name : 'No project' );
+    template = template.replace ( /\[project\]/ig, this.project ? this.project.name : 'No project' );
 
-    this.item.text = text;
+    this._setItemProp ( 'text', template );
 
   }
 
   updateVisibility () {
 
-    const isEnabled = !!this.config.statusbarEnabled;
+    const visibility = !!this.config.statusbarEnabled;
 
-    this.item[isEnabled ? 'show' : 'hide']();
+    if ( this._setItemProp ( 'visibility', visibility ) ) {
+
+      this.item[visibility ? 'show' : 'hide']();
+
+    }
 
   }
 

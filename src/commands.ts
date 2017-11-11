@@ -18,7 +18,8 @@ const {fetchPathDescription, enhanceWithDescriptions, fetchProjectsFolders, fetc
 function openProject ( project, inNewWindow: boolean = false ) {
 
   const {name, path} = project,
-        isCurrent = path === vscode.workspace.rootPath;
+        rootPath = Utils.folder.getActiveRootPath (),
+        isCurrent = path === rootPath;
 
   if ( isCurrent ) return vscode.window.showWarningMessage ( `"${name}" is already the opened project` );
 
@@ -175,7 +176,7 @@ async function _refresh () {
 
 async function remove () {
 
-  const {rootPath} = vscode.workspace;
+  const rootPath = Utils.folder.getActiveRootPath ();
 
   if ( !rootPath ) return vscode.window.showErrorMessage ( 'You have to open a project before removing it' );
 
@@ -199,7 +200,7 @@ async function save () {
 
   /* ROOTPATH */
 
-  const {rootPath} = vscode.workspace;
+  const rootPath = Utils.folder.getActiveRootPath ();
 
   if ( !rootPath ) return vscode.window.showErrorMessage ( 'You have to open a project before saving it' );
 

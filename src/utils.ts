@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
+import * as absolute from 'absolute';
 import {exec} from 'child_process';
 import * as fs from 'fs';
 import * as mkdirp from 'mkdirp';
@@ -242,6 +243,32 @@ const Utils = {
       } catch ( e ) {
         return false;
       }
+
+    },
+
+    getRootPath ( basePath? ) {
+
+      const {workspaceFolders} = vscode.workspace;
+
+      if ( !workspaceFolders ) return;
+
+      const firstRootPath = workspaceFolders[0].uri.fsPath;
+
+      if ( !basePath || !absolute ( basePath ) ) return firstRootPath;
+
+      const rootPaths = workspaceFolders.map ( folder => folder.uri.fsPath ),
+            sortedRootPaths = _.sortBy ( rootPaths, [path => path.length] ).reverse (); // In order to get the closest root
+
+      return sortedRootPaths.find ( rootPath => basePath.startsWith ( rootPath ) );
+
+    },
+
+    getActiveRootPath () {
+
+      const {activeTextEditor} = vscode.window,
+            editorPath = activeTextEditor && activeTextEditor.document.uri.fsPath;
+
+      return Utils.folder.getRootPath ( editorPath );
 
     }
 
@@ -493,7 +520,7 @@ const Utils = {
       /* VARIABLES */
 
       const items = [],
-            {rootPath} = vscode.workspace,
+            rootPath = Utils.folder.getActiveRootPath (),
             projects = Utils.config.getProjects ( obj ),
             projectsPaths = projects.map ( project => project.path ),
             dirtyData = ( config.checkDirty || config.filterDirty ) && !onlyGroups ? await fetchDirtyGeneralMulti ( projectsPaths ) : {},
