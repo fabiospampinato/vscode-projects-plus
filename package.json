@@ -161,10 +161,20 @@
           "description": "Enable the statusbar component",
           "default": true
         },
+        "projects.statusbarAlignment": {
+          "type": "string",
+          "description": "Should the item be placed to the left or right?",
+          "default": "left"
+        },
         "projects.statusbarCommand": {
           "type": "string",
           "description": "Command to execute on click",
           "default": "projects.open"
+        },
+        "projects.statusbarPriority": {
+          "type": "number",
+          "description": "The priority of this item. Higher value means the item should be shown more to the left",
+          "default": -1
         },
         "projects.statusbarTemplate": {
           "type": "string",

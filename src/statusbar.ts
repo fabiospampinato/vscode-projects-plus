@@ -13,11 +13,21 @@ class Statusbar {
 
   constructor () {
 
-    this.item = vscode.window.createStatusBarItem ( vscode.StatusBarAlignment.Left, Infinity );
+    this.item = this._initItem ();
 
     vscode.workspace.onDidChangeConfiguration ( this.update.bind ( this ) );
 
     this.update ();
+
+  }
+
+  _initItem () {
+
+    const config = Config.getExtension (),
+          alignment = config.statusbarAlignment === "right" ? vscode.StatusBarAlignment.Right : vscode.StatusBarAlignment.Left,
+          priority = config.statusbarPriority;
+
+    return vscode.window.createStatusBarItem ( alignment, priority );
 
   }
 

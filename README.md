@@ -74,7 +74,9 @@ It adds 3 shortcuts:
   "projects.sortProjects": true, // Sort projects alphabetically
   "projects.groupsOnTop": true, // Display groups on top of projects. This cannot be false if `sortGroups` and `sortProjects` are false
   "projects.statusbarEnabled": true, // Enable the statusbar component
+  "projects.statusbarAlignment": "left", // Should the item be placed to the left or right?
   "projects.statusbarCommand": 'projects.open', // Command to execute on click
+  "projects.statusbarPriority": -1, // The priority of this item. Higher value means the item should be shown more to the left
   "projects.statusbarTemplate": '$(file-directory) [group] $(chevron-right) [project]', // Template for rendering the statusbar content
   "projects.viewsRefreshInterval": 30000, // Milliseconds between explorer's views refreshes
   "projects.viewAllEnabled": true // Show or hide the "Projects" explorer view
