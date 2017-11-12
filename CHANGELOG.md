@@ -1,3 +1,6 @@
+### Version 1.13.0
+- Added a `Projects: Open Group` command
+
 ### Version 1.12.0
 - Added multi-root support
 - Statusbar: added support for custom alignment and priority
