@@ -227,6 +227,10 @@
         "title": "Project: Save"
       },
       {
+        "command": "projects.openGroup",
+        "title": "Projects: Open Group"
+      },
+      {
         "command": "projects.switchGroup",
         "title": "Projects: Switch Group"
       },
@@ -237,6 +241,10 @@
       {
         "command": "projects.viewOpenProjectInNewWindow",
         "title": "Open in New Window"
+      },
+      {
+        "command": "projects.viewOpenGroup",
+        "title": "Open Group"
       },
       {
         "command": "projects.viewSwitchGroup",
@@ -253,6 +261,11 @@
         "command": "projects.openInNewWindow",
         "key": "ctrl+alt+shift+p",
         "mac": "cmd+alt+shift+p"
+      },
+      {
+        "command": "projects.openGroup",
+        "key": "ctrl+alt+shift+x",
+        "mac": "cmd+alt+shift+x"
       },
       {
         "command": "projects.switchGroup",
@@ -280,6 +293,10 @@
           "when": "false"
         },
         {
+          "command": "projects.viewOpenGroup",
+          "when": "false"
+        },
+        {
           "command": "projects.viewSwitchGroup",
           "when": "false"
         }
@@ -304,6 +321,10 @@
         {
           "command": "projects.viewOpenProjectInNewWindow",
           "when": "view == projects.views.all && viewItem == project"
+        },
+        {
+          "command": "projects.viewOpenGroup",
+          "when": "view == projects.views.all && viewItem == group"
         },
         {
           "command": "projects.viewSwitchGroup",

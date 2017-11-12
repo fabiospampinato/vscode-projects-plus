@@ -1,6 +1,5 @@
 
 Now:
-  ☐ Add support for multi-root
   ☐ Add a `projects.favorites` view
 
 Next:
@@ -11,9 +10,7 @@ Future:
   ☐ Add support for nested groups switching even if groups' names aren't unique
 
 Maybe:
-  ☐ Add configurable shortcuts for each project
   ☐ Add a `Project: Move` command (Subset of Save)
   ☐ Add a `Project: Edit` command (Just an alias for Save)
-  ☐ Add a `Projects: Open Group` that opens all the projects within it in a single VSC window
   ☐ Make configPath point to the default user settings folder (can be synced with the Sync extension) in a backward compatible manner
   ☐ Add a `projects.recents` view

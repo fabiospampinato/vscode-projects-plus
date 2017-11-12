@@ -67,6 +67,12 @@ const Utils = {
 
   },
 
+  isInsiders () {
+
+    return !!vscode.env.appName.match ( /insiders/i );
+
+  },
+
   async exec ( command: string, options = {}, fallback? ) {
 
     try {

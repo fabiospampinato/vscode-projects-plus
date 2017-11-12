@@ -15,7 +15,7 @@ const {fetchPathDescription, enhanceWithDescriptions, fetchProjectsFolders, fetc
 
 /* HELPERS */
 
-function openProject ( project, inNewWindow: boolean = false ) {
+function helperOpenProject ( project, inNewWindow: boolean = false ) {
 
   const {name, path} = project,
         rootPath = Utils.folder.getActiveRootPath (),
@@ -24,6 +24,30 @@ function openProject ( project, inNewWindow: boolean = false ) {
   if ( isCurrent ) return vscode.window.showWarningMessage ( `"${name}" is already the opened project` );
 
   return Utils.folder.open ( path, inNewWindow );
+
+}
+
+async function helperOpenGroup ( group ) {
+
+  const config = await Config.get (),
+        isAllGroup = group.name === config.allGroupsName,
+        parent = isAllGroup ? config : group,
+        projects = Utils.config.getProjects ( parent );
+
+  if ( !projects || !projects.length ) return vscode.window.showErrorMessage ( 'No projects to open' );
+
+  const app = Utils.isInsiders () ? 'code-insiders' : 'code',
+        firstProject = projects[0],
+        otherProjects = projects.slice ( 1 ),
+        commands = [];
+
+  commands.push ( `${app} "${firstProject.path}"` );
+  commands.push ( `${app} --add ${otherProjects.map ( project => `"${project.path}"` ).join ( ' ' )}` ); //FIXME: It may not work (https://github.com/Microsoft/vscode/issues/38137) and can't be split up (https://github.com/Microsoft/vscode/issues/38138)
+  commands.push ( 'logout' );
+
+  const term = vscode.window.createTerminal ( 'Projects+ - Open Group' );
+
+  commands.forEach ( command => term.sendText ( command, true ) );
 
 }
 
@@ -63,7 +87,7 @@ async function editConfig () {
 
 }
 
-async function open ( inNewWindow?, onlyGroups? ) {
+async function open ( inNewWindow?, onlyGroups?, openAllProjects? ) {
 
   /* VARIABLES */
 
@@ -102,7 +126,11 @@ async function open ( inNewWindow?, onlyGroups? ) {
 
   if ( path ) { // Project
 
-    return openProject ( selected.obj, inNewWindow );
+    return helperOpenProject ( selected.obj, inNewWindow );
+
+  } else if ( openAllProjects ) { // All Projects in Group
+
+    return helperOpenGroup ( selected.obj );
 
   } else { // Group
 
@@ -139,7 +167,7 @@ async function openByName ( name, inNewWindow?, isGroup? ) {
 
   } else {
 
-    return openProject ( found, inNewWindow );
+    return helperOpenProject ( found, inNewWindow );
 
   }
 
@@ -280,6 +308,12 @@ async function save () {
 
 }
 
+async function openGroup () {
+
+  open ( undefined, true, true );
+
+}
+
 async function switchGroup () {
 
   open ( undefined, true );
@@ -290,13 +324,19 @@ async function switchGroup () {
 
 function viewOpenProject ( Item: ViewProjectItem ) {
 
-  return openProject ( Item.obj );
+  return helperOpenProject ( Item.obj );
 
 }
 
 function viewOpenProjectInNewWindow ( Item: ViewProjectItem ) {
 
-  return openProject ( Item.obj, true );
+  return helperOpenProject ( Item.obj, true );
+
+}
+
+async function viewOpenGroup ( Item: ViewGroupItem ) {
+
+  return helperOpenGroup ( Item.obj );
 
 }
 
@@ -310,4 +350,4 @@ async function viewSwitchGroup ( Item: ViewGroupItem ) {
 
 /* EXPORT */
 
-export {initConfig, editConfig, open, openInNewWindow, openByName, openProject, refresh, remove, save, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewSwitchGroup};
+export {initConfig, editConfig, open, openInNewWindow, openByName, helperOpenProject, refresh, remove, save, openGroup, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewOpenGroup, viewSwitchGroup};
