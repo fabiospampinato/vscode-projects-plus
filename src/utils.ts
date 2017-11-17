@@ -41,7 +41,7 @@ const Utils = {
 
     /* HARD CODED */
 
-    ['projects.openProject', 'projects.openByName'].forEach ( command => {
+    ['projects.helperOpenProject', 'projects.helperOpenGroup', 'projects.openByName'].forEach ( command => {
 
       const commandName = _.last ( command.split ( '.' ) ) as string,
             handler = Commands[commandName],
@@ -683,7 +683,7 @@ const Utils = {
         const command = {
           title: 'open',
           tooltip: `Open ${obj.name}`,
-          command: 'projects.openProject',
+          command: 'projects.helperOpenProject',
           arguments: [obj]
         };
 
