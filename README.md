@@ -38,6 +38,7 @@ It adds 7 new commands to the command palette:
 'Projects: Edit Configuration' // Open the configuration file
 'Projects: Refresh' // Automatically find projects
 'Projects: Switch Group' // Change context to another group
+'Projects: Open Group' // Open all projects inside a group in a single window
 ```
 
 It adds 3 shortcuts:
@@ -46,6 +47,7 @@ It adds 3 shortcuts:
 'Cmd/Ctrl+Alt+P' // Triggers `Project: Open`
 'Cmd/Ctrl+Alt+Shift+P' // Triggers `Project: Open in New Window`
 'Cmd/Ctrl+Alt+X' // Triggers `Projects: Switch Group`
+'Cmd/Ctrl+Alt+Shift+X' // Triggers `Projects: Open Group`
 ```
 
 ## Settings
