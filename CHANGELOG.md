@@ -1,3 +1,6 @@
+### Version 1.13.1
+- Fixed left-click-to-open in explorer view
+
 ### Version 1.13.0
 - Added a `Projects: Open Group` command
 
