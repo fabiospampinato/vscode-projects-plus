@@ -140,7 +140,7 @@ The configuration is an object that looks like this:
 - **[Projects+ Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-projects-plus-todo-plus)**: Bird's-eye view over your projects, view all your todo files aggregated into one.
 - **[Open in GitTower](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-open-in-gittower)**: use this extension for opening your projects in GitTower.
 
-## Hits:
+## Hints:
 
 - **GitTower**: organize your repositories there and then run `Terminals: Refresh` to have this extension copy your configuration.
 - **Sync projects**: make `projects.configPath` point to a file in your Dropbox directory to have it synced between computers.
