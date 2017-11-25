@@ -18,12 +18,13 @@ const {fetchPathDescription, enhanceWithDescriptions, fetchProjectsFolders, fetc
 function helperOpenProject ( project, inNewWindow: boolean = false ) {
 
   const {name, path} = project,
+        absPath = Utils.path.untildify ( path ),
         rootPath = Utils.folder.getActiveRootPath (),
-        isCurrent = path === rootPath;
+        isCurrent = absPath === rootPath;
 
   if ( isCurrent ) return vscode.window.showWarningMessage ( `"${name}" is already the opened project` );
 
-  return Utils.folder.open ( path, inNewWindow );
+  return Utils.folder.open ( absPath, inNewWindow );
 
 }
 
@@ -38,11 +39,13 @@ async function helperOpenGroup ( group ) {
 
   const app = Utils.isInsiders () ? 'code-insiders' : 'code',
         firstProject = projects[0],
+        firstProjectPath = Utils.path.untildify ( firstProject.path ),
         otherProjects = projects.slice ( 1 ),
+        otherProjectsPaths = otherProjects.map ( project => Utils.path.untildify ( project.path ) ),
         commands = [];
 
-  commands.push ( `${app} "${firstProject.path}"` );
-  commands.push ( `${app} --add ${otherProjects.map ( project => `"${project.path}"` ).join ( ' ' )}` ); //FIXME: It may not work (https://github.com/Microsoft/vscode/issues/38137) and can't be split up (https://github.com/Microsoft/vscode/issues/38138)
+  commands.push ( `${app} "${firstProjectPath}"` );
+  commands.push ( `${app} --add ${otherProjectsPaths.map ( path => `"${path}"` ).join ( ' ' )}` ); //FIXME: It may not work (https://github.com/Microsoft/vscode/issues/38137) and can't be split up (https://github.com/Microsoft/vscode/issues/38138)
   commands.push ( 'logout' );
 
   const term = vscode.window.createTerminal ( 'Projects+ - Open Group' );
@@ -284,7 +287,8 @@ async function save () {
 
   /* PROJECT */
 
-  const projectData = _.omitBy ( { name, description, path: rootPath }, _.isEmpty ) as any;
+  const path = config.useTilde ? Utils.path.tildify ( rootPath ) : rootPath,
+        projectData = _.omitBy ( { name, description, path }, _.isEmpty ) as any;
 
   if ( sameProject ) {
 

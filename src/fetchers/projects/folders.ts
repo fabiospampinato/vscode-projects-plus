@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import * as walker from 'walker';
+import Config from '../../config';
 import Utils from '../../utils';
 
 /* HELPERS */
@@ -33,9 +34,10 @@ async function fetchProjectsFolders ( roots, depth, ignoreFolders, matchFolders 
 
   }
 
-  /* CONFIG */
+  /* VARIABLES */
 
-  const config: any = {};
+  const config = await Config.get (),
+        found: any = {};
 
   /* WALK ROOTS */
 
@@ -56,11 +58,14 @@ async function fetchProjectsFolders ( roots, depth, ignoreFolders, matchFolders 
 
           if ( !isRepository ) return true;
 
-          if ( !config.projects ) config.projects = [];
+          if ( !found.projects ) found.projects = [];
 
-          config.projects.push ({
-            name: path.basename ( dir ),
-            path: dir
+          const projectName = path.basename ( dir ),
+                projectPath = config.useTilde ? Utils.path.tildify ( dir ) : dir;
+
+          found.projects.push ({
+            name: projectName,
+            path: projectPath
           });
 
           return false;
@@ -73,7 +78,7 @@ async function fetchProjectsFolders ( roots, depth, ignoreFolders, matchFolders 
 
   }));
 
-  return config;
+  return found;
 
 }
 

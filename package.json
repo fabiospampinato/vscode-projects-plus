@@ -181,6 +181,11 @@
           "description": "Template for rendering the statusbar content",
           "default": "$(file-directory) [group] $(chevron-right) [project]"
         },
+        "projects.useTilde": {
+          "type": "boolean",
+          "description": "Automatically save paths using tilde, i.e. \"~/project\" instead of \"/Users/me/project\"",
+          "default": true
+        },
         "projects.viewsRefreshInterval": {
           "type": "number",
           "description": "Milliseconds between explorer's views refreshes",
@@ -346,6 +351,8 @@
     "mkdirp": "^0.5.1",
     "pify": "^3.0.0",
     "plist": "^2.1.0",
+    "tildify": "^1.2.0",
+    "untildify": "^3.0.2",
     "walker": "^1.0.7"
   },
   "devDependencies": {

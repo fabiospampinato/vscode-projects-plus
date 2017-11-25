@@ -9,6 +9,8 @@ import * as mkdirp from 'mkdirp';
 import * as os from 'os';
 import * as path from 'path';
 import * as pify from 'pify';
+import * as tildify from 'tildify';
+import * as untildify from 'untildify';
 import * as vscode from 'vscode';
 import Config from './config';
 import * as Commands from './commands';
@@ -104,6 +106,14 @@ const Utils = {
       callback.__executing = false;
 
     }
+
+  },
+
+  path: {
+
+    tildify: _.memoize ( tildify ),
+
+    untildify: _.memoize ( untildify )
 
   },
 
@@ -441,7 +451,9 @@ const Utils = {
 
     removeProjectFromGroup ( project, group ) {
 
-      group.projects = group.projects.filter ( otherProject => otherProject.path !== project.path );
+      const projectPath = Utils.path.untildify ( project.path );
+
+      group.projects = group.projects.filter ( otherProject => Utils.path.untildify ( otherProject.path ) !== projectPath );
 
     },
 
@@ -471,7 +483,9 @@ const Utils = {
 
     getProjectByPath ( obj, path ) {
 
-      return Utils.config.getProjects ( obj ).find ( project => project.path === path );
+      path = Utils.path.untildify ( path );
+
+      return Utils.config.getProjects ( obj ).find ( project => Utils.path.untildify ( project.path ) === path );
 
     }
 
@@ -532,7 +546,8 @@ const Utils = {
             dirtyData = ( config.checkDirty || config.filterDirty ) && !onlyGroups ? await fetchDirtyGeneralMulti ( projectsPaths ) : {},
             branchData = config.showBranch && !onlyGroups ? await fetchBranchGeneralMulti ( projectsPaths ) : {},
             activeGroup = config.group && Utils.config.getGroupByName ( config, config.group ),
-            activeProject = rootPath ? Utils.config.getProjectByPath ( config, rootPath ) : false;
+            activeProject = rootPath ? Utils.config.getProjectByPath ( config, rootPath ) : false,
+            activeProjectPath = activeProject ? Utils.path.untildify ( activeProject.path ) : false;
 
       let projectsNr = 0,
           groupsNr = 0;
@@ -592,7 +607,7 @@ const Utils = {
 
         if ( config.filterRegex && !project.name.match ( new RegExp ( config.filterRegex ) ) ) return;
 
-        if ( config.checkPaths && !Utils.folder.exists ( project.path ) ) {
+        if ( config.checkPaths && !Utils.folder.exists ( Utils.path.untildify ( project.path ) ) ) {
 
           project._iconsRight.push ( 'alert' );
 
@@ -602,7 +617,7 @@ const Utils = {
 
             const branch = branchData[project.path];
 
-            if ( branch && !_.includes ( config.ignoreBranches, branchData[project.path] ) ) {
+            if ( branch && !_.includes ( config.ignoreBranches, branch ) ) {
 
               project.name += `/${branch}`;
 
@@ -610,7 +625,7 @@ const Utils = {
 
           }
 
-          if ( config.activeIndicator && !onlyGroups && activeProject && activeProject.path === project.path ) {
+          if ( config.activeIndicator && !onlyGroups && activeProject && activeProjectPath === Utils.path.untildify ( project.path ) ) {
 
             project._iconsLeft.push ( 'arrow-small-right' );
 

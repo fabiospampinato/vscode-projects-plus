@@ -9,7 +9,8 @@ import Utils from '../../utils';
 
 async function fetchNPMDescription ( folderPath ) {
 
-  const manifestPath = path.join ( folderPath, 'package.json' ),
+  const absFolderPath = Utils.path.untildify ( folderPath ),
+        manifestPath = path.join ( absFolderPath, 'package.json' ),
         manifestFile = Utils.file.readSync ( manifestPath );
 
   if ( !manifestFile ) return;

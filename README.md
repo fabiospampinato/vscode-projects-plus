@@ -80,6 +80,7 @@ It adds 4 shortcuts:
   "projects.statusbarCommand": 'projects.open', // Command to execute on click
   "projects.statusbarPriority": -1, // The priority of this item. Higher value means the item should be shown more to the left
   "projects.statusbarTemplate": '$(file-directory) [group] $(chevron-right) [project]', // Template for rendering the statusbar content
+  "projects.useTilde": true, // Automatically save paths using tilde, i.e. "~/project" instead of "/Users/me/project"
   "projects.viewsRefreshInterval": 30000, // Milliseconds between explorer's views refreshes
   "projects.viewAllEnabled": true // Show or hide the "Projects" explorer view
 }
@@ -143,7 +144,7 @@ The configuration is an object that looks like this:
 ## Hints:
 
 - **GitTower**: organize your repositories there and then run `Terminals: Refresh` to have this extension copy your configuration.
-- **Sync projects**: make `projects.configPath` point to a file in your Dropbox directory to have it synced between computers.
+- **Sync projects**: make `projects.configPath` point to a file in your Dropbox directory to have it synced between computers. Write paths as `~/path/to/project` in order to make them cross-platform.
 - **[Commands](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-commands)**: Use this other extension and the `projects.openByName` command to add buttons to the statusbar for easy switching between projects or groups.
 - **Icons**: [here](https://octicons.github.com/) you can browse a list of supported icons. If for instance you click the first icon, you'll get a page with `.octicon-alert` written in it, to get the string to use simply remove the `.octicon-` part, so in this case the icon name would be `alert`.
 

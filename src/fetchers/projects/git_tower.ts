@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as plist from 'plist';
+import Config from '../../config';
 import Utils from '../../utils';
 
 /* VARIABLES */
@@ -22,7 +23,8 @@ async function fetchProjectsGitTower () {
   if ( !file ) return {};
 
   const bookmarks = plist.parse ( file ),
-        config: any = {};
+        config = await Config.get (),
+        found: any = {};
 
   function parseGroup ( obj, parent ) {
 
@@ -42,7 +44,8 @@ async function fetchProjectsGitTower () {
 
     if ( !parent.projects ) parent.projects = [];
 
-    const projectPath = _.trimEnd ( obj.fileURL.replace ( 'file://', '' ), '/' ),
+    const folderPath = _.trimEnd ( obj.fileURL.replace ( 'file://', '' ), '/' ),
+          projectPath = config.useTilde ? Utils.path.tildify ( folderPath ) : folderPath,
           project = {
             name: obj.name,
             path: projectPath
@@ -77,9 +80,9 @@ async function fetchProjectsGitTower () {
 
   }
 
-  parseObj ( bookmarks, config );
+  parseObj ( bookmarks, found );
 
-  return config;
+  return found;
 
 }
 

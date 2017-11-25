@@ -115,9 +115,10 @@ const Config = {
 
     if ( merged.groups && merged.projects ) {
 
-      const paths = Utils.config.getProjectsPaths ({ groups: merged.groups }).map ( path => path.toLowerCase () );
+      const pathNormalize = path => Utils.path.untildify ( path ).toLowerCase (),
+            paths = Utils.config.getProjectsPaths ({ groups: merged.groups }).map ( pathNormalize );
 
-      merged.projects = merged.projects.filter ( project => !_.includes ( paths, project.path.toLowerCase () ) );
+      merged.projects = merged.projects.filter ( project => !_.includes ( paths, pathNormalize ( project.path ) ) );
 
     }
 
