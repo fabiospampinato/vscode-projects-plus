@@ -31,32 +31,32 @@ const BranchGitCache = {
 
 /* GIT */
 
-async function fetchBranchGit ( folderpath, updateCache = true ) {
+async function fetchBranchGit ( folderPath, updateCache = true ) {
 
   let returnVal;
 
-  const gitPath = path.join ( folderpath, '.git' ),
+  const gitPath = path.join ( folderPath, '.git' ),
         stat = await Utils.file.stat ( gitPath );
 
   if ( stat ) {
 
     if ( !cache ) cache = await BranchGitCache.read ();
 
-    if ( cache[folderpath] && cache[folderpath].branch && cache[folderpath].timestamp >= new Date ( stat.mtime ).getTime () ) {
+    if ( cache[folderPath] && cache[folderPath].branch && cache[folderPath].timestamp >= new Date ( stat.mtime ).getTime () ) {
 
-      returnVal = cache[folderpath].branch;
+      returnVal = cache[folderPath].branch;
 
     } else {
 
       const command = 'git symbolic-ref --short HEAD --',
             commandOptions = {
-              cwd: folderpath,
+              cwd: folderPath,
               encoding: 'utf8'
             },
             result = await Utils.exec ( command, commandOptions, '' ),
             branch = _.trim ( result );
 
-      cache[folderpath] = {
+      cache[folderPath] = {
         timestamp: new Date ().getTime (),
         branch
       };

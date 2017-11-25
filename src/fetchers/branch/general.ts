@@ -6,13 +6,13 @@ import {fetchBranchGit} from './git';
 
 /* GENERAL */
 
-async function fetchBranchGeneral ( folderpath, updateCache = true ) {
+async function fetchBranchGeneral ( folderPath, updateCache = true ) {
 
   const fetchers = [fetchBranchGit];
 
   for ( let fetcher of fetchers ) {
 
-    const result = await fetcher ( folderpath, updateCache );
+    const result = await fetcher ( folderPath, updateCache );
 
     if ( _.isString ( result ) ) return result;
 
@@ -22,13 +22,13 @@ async function fetchBranchGeneral ( folderpath, updateCache = true ) {
 
 }
 
-async function fetchBranchGeneralMulti ( folderpaths ) {
+async function fetchBranchGeneralMulti ( folderPaths ) {
 
   const multi = {};
 
-  for ( let i = 0, l = folderpaths.length; i < l; i++ ) {
+  for ( let i = 0, l = folderPaths.length; i < l; i++ ) {
 
-    multi[folderpaths[i]] = await fetchBranchGeneral ( folderpaths[i], i === l - 1 );
+    multi[folderPaths[i]] = await fetchBranchGeneral ( folderPaths[i], i === l - 1 );
 
   }
 

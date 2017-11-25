@@ -109,11 +109,11 @@ const Utils = {
 
   file: {
 
-    open ( filepath, isTextDocument = true ) {
+    open ( filePath, isTextDocument = true ) {
 
-      filepath = path.normalize ( filepath );
+      filePath = path.normalize ( filePath );
 
-      const fileuri = vscode.Uri.file ( filepath );
+      const fileuri = vscode.Uri.file ( filePath );
 
       if ( isTextDocument ) {
 
@@ -128,56 +128,56 @@ const Utils = {
 
     },
 
-    async make ( filepath, content ) {
+    async make ( filePath, content ) {
 
-      await pify ( mkdirp )( path.dirname ( filepath ) );
+      await pify ( mkdirp )( path.dirname ( filePath ) );
 
-      return Utils.file.write ( filepath, content );
+      return Utils.file.write ( filePath, content );
 
     },
 
-    async read ( filepath ) {
+    async read ( filePath ) {
 
       try {
-        return ( await pify ( fs.readFile )( filepath, { encoding: 'utf8' } ) ).toString ();
+        return ( await pify ( fs.readFile )( filePath, { encoding: 'utf8' } ) ).toString ();
       } catch ( e ) {
         return;
       }
 
     },
 
-    readSync ( filepath ) {
+    readSync ( filePath ) {
 
       try {
-        return ( fs.readFileSync ( filepath, { encoding: 'utf8' } ) ).toString ();
+        return ( fs.readFileSync ( filePath, { encoding: 'utf8' } ) ).toString ();
       } catch ( e ) {
         return;
       }
 
     },
 
-    async write ( filepath, content ) {
+    async write ( filePath, content ) {
 
-      return pify ( fs.writeFile )( filepath, content, {} );
-
-    },
-
-    async delete ( filepath ) {
-
-      return pify ( fs.unlink )( filepath );
+      return pify ( fs.writeFile )( filePath, content, {} );
 
     },
 
-    deleteSync ( filepath ) {
+    async delete ( filePath ) {
 
-      return fs.unlinkSync ( filepath );
+      return pify ( fs.unlink )( filePath );
 
     },
 
-    async stat ( filepath ) {
+    deleteSync ( filePath ) {
+
+      return fs.unlinkSync ( filePath );
+
+    },
+
+    async stat ( filePath ) {
 
       try {
-        return await pify ( fs.stat )( filepath );
+        return await pify ( fs.stat )( filePath );
       } catch ( e ) {
         return;
       }
@@ -196,8 +196,8 @@ const Utils = {
 
     async read ( filename, fallback = {} ) {
 
-      const filepath = Utils.cache.getFilePath ( filename ),
-            content = await Utils.file.read ( filepath );
+      const filePath = Utils.cache.getFilePath ( filename ),
+            content = await Utils.file.read ( filePath );
 
       if ( !content ) return fallback;
 
@@ -211,18 +211,18 @@ const Utils = {
 
     async write ( filename, content = {} ) {
 
-      const filepath = Utils.cache.getFilePath ( filename );
+      const filePath = Utils.cache.getFilePath ( filename );
 
-      return Utils.file.write ( filepath, JSON.stringify ( content, undefined, 2 ) );
+      return Utils.file.write ( filePath, JSON.stringify ( content, undefined, 2 ) );
 
     },
 
     async delete ( filename ) {
 
-      const filepath = Utils.cache.getFilePath ( filename );
+      const filePath = Utils.cache.getFilePath ( filename );
 
       try { // It may not exist anymore
-        await Utils.file.delete ( filepath );
+        await Utils.file.delete ( filePath );
       } catch ( e ) {}
 
     }
@@ -231,20 +231,20 @@ const Utils = {
 
   folder: {
 
-    open ( folderpath, inNewWindow? ) {
+    open ( folderPath, inNewWindow? ) {
 
-      folderpath = path.normalize ( folderpath );
+      folderPath = path.normalize ( folderPath );
 
-      const folderuri = vscode.Uri.file ( folderpath );
+      const folderuri = vscode.Uri.file ( folderPath );
 
       vscode.commands.executeCommand ( 'vscode.openFolder', folderuri, inNewWindow );
 
     },
 
-    exists ( folderpath ) {
+    exists ( folderPath ) {
 
       try {
-        fs.accessSync ( folderpath );
+        fs.accessSync ( folderPath );
         return true;
       } catch ( e ) {
         return false;

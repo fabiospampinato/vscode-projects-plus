@@ -9,9 +9,9 @@ import Utils from '../../utils';
 
 /* HELPERS */
 
-function getPathDepth ( filepath ) {
+function getPathDepth ( filePath ) {
 
-  return filepath.split ( path.sep ).length;
+  return filePath.split ( path.sep ).length;
 
 }
 

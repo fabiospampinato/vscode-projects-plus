@@ -7,13 +7,13 @@ import {fetchNPMDescription} from './npm';
 
 /* PATH */
 
-async function fetchPathDescription ( folderpath ) {
+async function fetchPathDescription ( folderPath ) {
 
-  const getters = [fetchNPMDescription];
+  const fetchers = [fetchNPMDescription];
 
-  for ( let getter of getters ) {
+  for ( let fetcher of fetchers ) {
 
-    const description = await getter ( folderpath );
+    const description = await fetcher ( folderPath );
 
     if ( description ) return description;
 

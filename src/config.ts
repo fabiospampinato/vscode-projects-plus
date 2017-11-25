@@ -30,9 +30,9 @@ const Config = {
 
   },
 
-  async getFile ( filepath ) {
+  async getFile ( filePath ) {
 
-    const content = await Utils.file.read ( filepath );
+    const content = await Utils.file.read ( filePath );
 
     if ( !content || !content.trim () ) return;
 
@@ -44,7 +44,7 @@ const Config = {
 
       if ( option && option.title === 'Overwrite' ) {
 
-        await Utils.file.write ( filepath, '{}' );
+        await Utils.file.write ( filePath, '{}' );
 
         return {};
 
@@ -52,7 +52,7 @@ const Config = {
 
         if ( option && option.title === 'Edit' ) {
 
-          Utils.file.open ( filepath );
+          Utils.file.open ( filePath );
 
         }
 
@@ -77,11 +77,11 @@ const Config = {
 
   },
 
-  async write ( filepath, config ) {
+  async write ( filePath, config ) {
 
     const newConfig = _.omit ( config, ['configPath'] );
 
-    await Utils.file.write ( filepath, JSON.stringify ( newConfig, undefined, 2 ) );
+    await Utils.file.write ( filePath, JSON.stringify ( newConfig, undefined, 2 ) );
 
     const {default: Statusbar} = require ( './statusbar' ); // In order to avoid cyclic dependency
 

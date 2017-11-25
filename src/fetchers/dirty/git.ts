@@ -31,32 +31,32 @@ const DirtyGitCache = {
 
 /* GIT */
 
-async function fetchDirtyGit ( folderpath, updateCache = true ) {
+async function fetchDirtyGit ( folderPath, updateCache = true ) {
 
   let returnVal;
 
-  const gitPath = path.join ( folderpath, '.git' ),
+  const gitPath = path.join ( folderPath, '.git' ),
         stat = await Utils.file.stat ( gitPath );
 
   if ( stat ) {
 
     if ( !cache ) cache = await DirtyGitCache.read ();
 
-    if ( cache[folderpath] && !_.isNull ( cache[folderpath].dirty ) && cache[folderpath].timestamp >= new Date ( stat.mtime ).getTime () ) {
+    if ( cache[folderPath] && !_.isNull ( cache[folderPath].dirty ) && cache[folderPath].timestamp >= new Date ( stat.mtime ).getTime () ) {
 
-      returnVal = cache[folderpath].dirty;
+      returnVal = cache[folderPath].dirty;
 
     } else {
 
       const command = 'git status --porcelain --untracked-files | tail -n1',
             commandOptions = {
-              cwd: folderpath,
+              cwd: folderPath,
               encoding: 'utf8'
             },
             result = await Utils.exec ( command, commandOptions, null ),
             dirty = _.isNull ( result ) ? result : !!result;
 
-      cache[folderpath] = {
+      cache[folderPath] = {
         timestamp: new Date ().getTime (),
         dirty
       };

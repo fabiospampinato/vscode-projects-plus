@@ -7,9 +7,9 @@ import Utils from '../../utils';
 
 /* NPM */
 
-async function fetchNPMDescription ( folderpath ) {
+async function fetchNPMDescription ( folderPath ) {
 
-  const manifestPath = path.join ( folderpath, 'package.json' ),
+  const manifestPath = path.join ( folderPath, 'package.json' ),
         manifestFile = Utils.file.readSync ( manifestPath );
 
   if ( !manifestFile ) return;
