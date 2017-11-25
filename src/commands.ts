@@ -287,8 +287,8 @@ async function save () {
 
   /* PROJECT */
 
-  const path = config.useTilde ? Utils.path.tildify ( rootPath ) : rootPath,
-        projectData = _.omitBy ( { name, description, path }, _.isEmpty ) as any;
+  const projectPath = config.useTilde ? Utils.path.tildify ( rootPath ) : rootPath,
+        projectData = _.omitBy ( { name, description, path: projectPath }, _.isEmpty ) as any;
 
   if ( sameProject ) {
 
