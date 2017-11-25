@@ -1,3 +1,6 @@
+### Version 1.14.0
+- Added support for paths starting with `~/`
+
 ### Version 1.13.2
 - Readme: added info about `Projects: Open Group`
 
