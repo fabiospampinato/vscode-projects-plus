@@ -28,7 +28,7 @@ ext install vscode-projects-plus
 
 ## Usage
 
-It adds 7 new commands to the command palette:
+It adds 8 new commands to the command palette:
 
 ```js
 'Project: Open' // Open a project
@@ -41,7 +41,7 @@ It adds 7 new commands to the command palette:
 'Projects: Open Group' // Open all projects inside a group in a single window
 ```
 
-It adds 3 shortcuts:
+It adds 4 shortcuts:
 
 ```js
 'Cmd/Ctrl+Alt+P' // Triggers `Project: Open`
