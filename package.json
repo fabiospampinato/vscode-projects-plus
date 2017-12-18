@@ -153,7 +153,7 @@
         },
         "projects.groupsOnTop": {
           "type": "boolean",
-          "description": "Display groups on top of projects",
+          "description": "Display groups on top of projects. This cannot be false if either `sortGroups` or `sortProjects` is false",
           "default": true
         },
         "projects.statusbarEnabled": {

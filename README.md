@@ -74,7 +74,7 @@ It adds 4 shortcuts:
   "projects.refreshRoots": ['/path/to/projects',...], // Root paths from where to start searching for projects
   "projects.sortGroups": true, // Sort groups alphabetically
   "projects.sortProjects": true, // Sort projects alphabetically
-  "projects.groupsOnTop": true, // Display groups on top of projects. This cannot be false if `sortGroups` and `sortProjects` are false
+  "projects.groupsOnTop": true, // Display groups on top of projects. This cannot be false if either `sortGroups` or `sortProjects` is false
   "projects.statusbarEnabled": true, // Enable the statusbar component
   "projects.statusbarAlignment": "left", // Should the item be placed to the left or right?
   "projects.statusbarCommand": 'projects.open', // Command to execute on click

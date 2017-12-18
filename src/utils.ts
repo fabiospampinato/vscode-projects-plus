@@ -296,20 +296,21 @@ const Utils = {
 
     walk ( obj, objCallback, groupCallback, projectCallback, sortGroups = Config.getExtension ().sortGroups, sortProjects = Config.getExtension ().sortProjects, _parent = false, depth = 0, groupsOnTop = Config.getExtension ().groupsOnTop ) { //FIXME: We should call `await Config.get ()`, but that's async and will break things
 
-      const isGroupsOnTopValid = sortGroups && sortProjects,
-            groups = obj.groups
-                       ? sortGroups
+      groupsOnTop = groupsOnTop || !sortGroups || !sortProjects;
+
+      const groups = obj.groups
+                       ? groupsOnTop && sortGroups
                          ? _.sortBy ( obj.groups, group => group['name'].toLowerCase () )
                          : obj.groups
                        : [],
             projects = obj.projects
-                         ? sortProjects
+                         ? groupsOnTop && sortProjects
                            ? _.sortBy ( obj.projects, project => project['name'].toLowerCase () )
                            : obj.projects
                          : [],
             items = [];
 
-      if ( groupsOnTop && isGroupsOnTopValid ) {
+      if ( groupsOnTop ) {
 
         items.push ( ...groups, ...projects );
 
