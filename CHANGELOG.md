@@ -1,3 +1,6 @@
+### Version 1.14.1
+- Fixed `groupsOnTop` logic
+
 ### Version 1.14.0
 - Added support for paths starting with `~/`
 
