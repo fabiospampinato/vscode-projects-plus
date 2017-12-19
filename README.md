@@ -77,6 +77,7 @@ It adds 4 shortcuts:
   "projects.groupsOnTop": true, // Display groups on top of projects. This cannot be false if either `sortGroups` or `sortProjects` is false
   "projects.statusbarEnabled": true, // Enable the statusbar component
   "projects.statusbarAlignment": "left", // Should the item be placed to the left or right?
+  "projects.statusbarColor": "", // The foreground color for this item
   "projects.statusbarCommand": 'projects.open', // Command to execute on click
   "projects.statusbarPriority": -1, // The priority of this item. Higher value means the item should be shown more to the left
   "projects.statusbarTemplate": '$(file-directory) [group] $(chevron-right) [project]', // Template for rendering the statusbar content

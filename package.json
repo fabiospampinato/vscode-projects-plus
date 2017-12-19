@@ -166,6 +166,11 @@
           "description": "Should the item be placed to the left or right?",
           "default": "left"
         },
+        "projects.statusbarColor": {
+          "type": "string",
+          "description": "The foreground color for this item",
+          "default": ""
+        },
         "projects.statusbarCommand": {
           "type": "string",
           "description": "Command to execute on click",

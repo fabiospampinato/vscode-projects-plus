@@ -82,6 +82,7 @@ class Statusbar {
     this.config = config || await Config.get ();
 
     this.updateVariables ();
+    this.updateColor ();
     this.updateCommand ();
     this.updateTooltip ();
     this.updateText ();
@@ -94,6 +95,14 @@ class Statusbar {
     this.rootPath = Utils.folder.getActiveRootPath ();
     this.project = this.rootPath && Utils.config.getProjectByPath ( this.config, this.rootPath );
     this.group = this.project && Utils.config.getProjectGroup ( this.config, this.rootPath );
+
+  }
+
+  updateColor () {
+
+    const color = this.config.statusbarColor;
+
+    this._setItemProp ( 'color', color );
 
   }
 
