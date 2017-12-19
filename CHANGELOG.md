@@ -1,3 +1,6 @@
+### Version 1.15.0
+- Added a `statusbarColor` option
+
 ### Version 1.14.1
 - Fixed `groupsOnTop` logic
 
