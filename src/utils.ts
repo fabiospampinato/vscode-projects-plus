@@ -484,9 +484,9 @@ const Utils = {
 
     getProjectByPath ( obj, path ) {
 
-      path = Utils.path.untildify ( path );
+      path = vscode.Uri.parse ( Utils.path.untildify ( path ) ).fsPath;
 
-      return Utils.config.getProjects ( obj ).find ( project => Utils.path.untildify ( project.path ) === path );
+      return Utils.config.getProjects ( obj ).find ( project => vscode.Uri.parse ( Utils.path.untildify ( project.path ) ).fsPath === path );
 
     }
 
