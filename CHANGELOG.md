@@ -1,3 +1,6 @@
+### Version 1.15.1
+- Fixed `getProjectByPath` in Windows
+
 ### Version 1.15.0
 - Added a `statusbarColor` option
 
