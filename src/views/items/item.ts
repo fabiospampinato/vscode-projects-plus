@@ -17,6 +17,7 @@ class Item extends vscode.TreeItem {
 
     this.obj = obj;
     this.command = command;
+    this.tooltip = obj.description;
 
   }
 
