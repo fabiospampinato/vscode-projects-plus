@@ -1,3 +1,6 @@
+### Version 1.15.2
+- Explorer view: added tooltips
+
 ### Version 1.15.1
 - Fixed `getProjectByPath` in Windows
 
