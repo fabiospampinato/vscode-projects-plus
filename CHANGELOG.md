@@ -1,3 +1,6 @@
+### Version 1.15.3
+- Updated readme
+
 ### Version 1.15.2
 - Explorer view: added tooltips
 
