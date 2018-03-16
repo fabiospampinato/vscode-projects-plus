@@ -1,4 +1,4 @@
-# VSC Projects+
+# Projects+
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/fabiospampinato/vscode-projects-plus/master/resources/logo/logo-128x128.png" alt="Logo">
@@ -20,10 +20,10 @@ It comes packed with a lot of features:
 
 ## Install
 
-Run the following in the command palette:
+Follow the instructions in the [Marketplace](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-projects-plus), or run the following in the command palette:
 
 ```shell
-ext install vscode-projects-plus
+ext install fabiospampinato.vscode-projects-plus
 ```
 
 ## Usage
