@@ -41,20 +41,6 @@ const Utils = {
 
     });
 
-    /* HARD CODED */
-
-    ['projects.helperOpenProject', 'projects.helperOpenGroup', 'projects.openByName'].forEach ( command => {
-
-      const commandName = _.last ( command.split ( '.' ) ) as string,
-            handler = Commands[commandName],
-            disposable = vscode.commands.registerCommand ( command, handler );
-
-      context.subscriptions.push ( disposable );
-
-    });
-
-    return Commands;
-
   },
 
   initViews ( context: vscode.ExtensionContext ) {
