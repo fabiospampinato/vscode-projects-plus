@@ -1,3 +1,6 @@
+### Version 1.16.0
+- Added a `projects.addToWorkspace` command
+
 ### Version 1.15.3
 - Updated readme
 
