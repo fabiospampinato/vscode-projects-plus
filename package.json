@@ -221,6 +221,10 @@
         "title": "Project: Open in New Window"
       },
       {
+        "command": "projects.addToWorkspace",
+        "title": "Project: Add to Workspace"
+      },
+      {
         "command": "projects.refresh",
         "title": "Projects: Refresh",
         "icon": {
@@ -251,6 +255,10 @@
       {
         "command": "projects.viewOpenProjectInNewWindow",
         "title": "Open in New Window"
+      },
+      {
+        "command": "projects.viewAddProjectToWorkspace",
+        "title": "Add to Workspace"
       },
       {
         "command": "projects.viewOpenGroup",
@@ -303,6 +311,10 @@
           "when": "false"
         },
         {
+          "command": "projects.viewAddProjectToWorkspace",
+          "when": "false"
+        },
+        {
           "command": "projects.viewOpenGroup",
           "when": "false"
         },
@@ -330,6 +342,10 @@
         },
         {
           "command": "projects.viewOpenProjectInNewWindow",
+          "when": "view == projects.views.all && viewItem == project"
+        },
+        {
+          "command": "projects.viewAddProjectToWorkspace",
           "when": "view == projects.views.all && viewItem == project"
         },
         {

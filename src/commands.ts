@@ -28,6 +28,22 @@ function helperOpenProject ( project, inNewWindow: boolean = false ) {
 
 }
 
+function helperAddProjectToWorkspace ( project ) {
+
+  const app = Utils.isInsiders () ? 'code-insiders' : 'code',
+        projectPath = Utils.path.untildify ( project.path );
+
+  const commands = [
+    `${app} --add "${projectPath}"`,
+    'logout'
+  ];
+
+  const term = vscode.window.createTerminal ( 'Projects+ - Add to Workspace' );
+
+  commands.forEach ( command => term.sendText ( command, true ) );
+
+}
+
 async function helperOpenGroup ( group ) {
 
   const config = await Config.get (),
@@ -90,7 +106,7 @@ async function editConfig () {
 
 }
 
-async function open ( inNewWindow?, onlyGroups?, openAllProjects? ) {
+async function open ( inNewWindow?, onlyGroups?, openAllProjects?, addToWorkSpace? ) {
 
   /* VARIABLES */
 
@@ -129,7 +145,15 @@ async function open ( inNewWindow?, onlyGroups?, openAllProjects? ) {
 
   if ( path ) { // Project
 
-    return helperOpenProject ( selected.obj, inNewWindow );
+    if ( addToWorkSpace ) {
+
+      return helperAddProjectToWorkspace ( selected.obj );
+
+    } else {
+
+      return helperOpenProject ( selected.obj, inNewWindow );
+
+    }
 
   } else if ( openAllProjects ) { // All Projects in Group
 
@@ -173,6 +197,12 @@ async function openByName ( name, inNewWindow?, isGroup? ) {
     return helperOpenProject ( found, inNewWindow );
 
   }
+
+}
+
+async function addToWorkspace () {
+
+  return open ( false, false, false, true );
 
 }
 
@@ -338,6 +368,12 @@ function viewOpenProjectInNewWindow ( Item: ViewProjectItem ) {
 
 }
 
+function viewAddProjectToWorkspace ( Item: ViewProjectItem ) {
+
+  return helperAddProjectToWorkspace ( Item.obj );
+
+}
+
 async function viewOpenGroup ( Item: ViewGroupItem ) {
 
   return helperOpenGroup ( Item.obj );
@@ -354,4 +390,4 @@ async function viewSwitchGroup ( Item: ViewGroupItem ) {
 
 /* EXPORT */
 
-export {initConfig, editConfig, open, openInNewWindow, openByName, helperOpenProject, helperOpenGroup, refresh, remove, save, openGroup, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewOpenGroup, viewSwitchGroup};
+export {initConfig, editConfig, open, openInNewWindow, openByName, addToWorkspace, helperOpenProject, helperOpenGroup, refresh, remove, save, openGroup, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewAddProjectToWorkspace, viewOpenGroup, viewSwitchGroup};
