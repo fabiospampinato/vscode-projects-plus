@@ -391,4 +391,4 @@ async function viewSwitchGroup ( Item: ViewGroupItem ) {
 
 /* EXPORT */
 
-export {initConfig, editConfig, open, openInNewWindow, openByName, addToWorkspace, helperOpenProject, helperOpenGroup, refresh, remove, save, openGroup, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewAddProjectToWorkspace, viewOpenGroup, viewSwitchGroup};
+export {initConfig, editConfig, open, openInNewWindow, openByName, addToWorkspace, helperOpenProject, helperAddProjectToWorkspace, helperOpenGroup, refresh, remove, save, openGroup, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewAddProjectToWorkspace, viewOpenGroup, viewSwitchGroup};
