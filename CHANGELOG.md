@@ -1,3 +1,8 @@
+### Version 1.16.2
+- Explorer view: fixed left-click on projects to open them
+- Refreshing contributed views only when necessary
+- Avoiding using the terminal for adding a project to the workspace
+
 ### Version 1.16.1
 - Replaced `logout` with `exit 0`
 
