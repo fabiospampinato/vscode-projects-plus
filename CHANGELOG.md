@@ -1,3 +1,6 @@
+### Version 1.16.1
+- Replaced `logout` with `exit 0`
+
 ### Version 1.16.0
 - Added a `projects.addToWorkspace` command
 
