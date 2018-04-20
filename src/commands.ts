@@ -256,7 +256,7 @@ async function save () {
 
   /* ROOTPATH */
 
-  const rootPath = Utils.folder.getActiveRootPath ();
+  const rootPath = Utils.folder.getActiveRootPath () as any;
 
   if ( !rootPath ) return vscode.window.showErrorMessage ( 'You have to open a project before saving it' );
 
