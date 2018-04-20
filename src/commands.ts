@@ -30,17 +30,11 @@ function helperOpenProject ( project, inNewWindow: boolean = false ) {
 
 function helperAddProjectToWorkspace ( project ) {
 
-  const app = Utils.isInsiders () ? 'code-insiders' : 'code',
-        projectPath = Utils.path.untildify ( project.path );
+  const projectPath = Utils.path.untildify ( project.path ),
+        insertInex = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders.length : 0,
+        uri = vscode.Uri.file ( projectPath );
 
-  const commands = [
-    `${app} --add "${projectPath}"`,
-    'exit 0'
-  ];
-
-  const term = vscode.window.createTerminal ( 'Projects+ - Add to Workspace' );
-
-  commands.forEach ( command => term.sendText ( command, true ) );
+  vscode.workspace.updateWorkspaceFolders( insertInex, null, {uri} );
 
 }
 
