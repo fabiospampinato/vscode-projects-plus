@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
+import * as chokidar from 'chokidar';
 import * as JSON5 from 'json5';
 import * as os from 'os';
 import * as path from 'path';
@@ -125,6 +126,61 @@ const Config = {
     /* RETURN */
 
     return merged;
+
+  },
+
+  onChangeListening: false,
+  onChangeCallbacks: [],
+
+  async onChangeListener () {
+
+    let config = await Config.get (),
+        watcher;
+
+    async function handleChange () {
+
+      const newConfig = await Config.get ();
+
+      if ( _.isEqual ( config, newConfig ) ) return;
+
+      if ( config.configPath !== newConfig.configPath ) watchChokidar ();
+
+      config = newConfig;
+
+      Config.onChangeCallbacks.forEach ( callback => callback ( config ) );
+
+    }
+
+    function watchChokidar () {
+
+      if ( watcher ) watcher.close ();
+
+      watcher = chokidar.watch ( config.configPath ).on ( 'all', handleChange );
+
+    }
+
+    function watchWorkspaceConfiguration () {
+
+      vscode.workspace.onDidChangeConfiguration ( handleChange );
+
+    }
+
+    watchChokidar ();
+    watchWorkspaceConfiguration ();
+
+  },
+
+  async onChange ( callback ) {
+
+    if ( !Config.onChangeListening ) {
+
+      Config.onChangeListener ();
+
+      Config.onChangeListening = true;
+
+    }
+
+    Config.onChangeCallbacks.push ( callback );
 
   }
 

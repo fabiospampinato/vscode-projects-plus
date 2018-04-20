@@ -191,11 +191,6 @@
           "description": "Automatically save paths using tilde, i.e. \"~/project\" instead of \"/Users/me/project\"",
           "default": true
         },
-        "projects.viewsRefreshInterval": {
-          "type": "number",
-          "description": "Milliseconds between explorer's views refreshes",
-          "default": 30000
-        },
         "projects.viewAllEnabled": {
           "type": "boolean",
           "description": "Show or hide the \"Projects\" explorer view",
@@ -367,6 +362,7 @@
   },
   "dependencies": {
     "absolute": "0.0.1",
+    "chokidar": "^2.0.3",
     "json5": "^0.5.1",
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",

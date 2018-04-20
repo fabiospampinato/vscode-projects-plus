@@ -14,8 +14,6 @@ async function activate ( context: vscode.ExtensionContext ) {
 
   Utils.initViews ( context );
 
-  Utils.ui.refreshInterval ( config.viewsRefreshInterval );
-
   return Utils.initCommands ( context );
 
 }

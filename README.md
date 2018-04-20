@@ -83,7 +83,6 @@ It adds 4 shortcuts:
   "projects.statusbarPriority": -1, // The priority of this item. Higher value means the item should be shown more to the left
   "projects.statusbarTemplate": '$(file-directory) [group] $(chevron-right) [project]', // Template for rendering the statusbar content
   "projects.useTilde": true, // Automatically save paths using tilde, i.e. "~/project" instead of "/Users/me/project"
-  "projects.viewsRefreshInterval": 30000, // Milliseconds between explorer's views refreshes
   "projects.viewAllEnabled": true // Show or hide the "Projects" explorer view
 }
 ```

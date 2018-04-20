@@ -67,6 +67,14 @@ const Utils = {
 
     Utils.ui.views.push ( viewAll );
 
+    /* REFRESH */
+
+    if ( Utils.ui.views.length ) {
+
+      Config.onChange ( Utils.ui.refresh );
+
+    }
+
   },
 
   isInsiders () {
@@ -527,12 +535,6 @@ const Utils = {
     refresh () {
 
       Utils.ui.views.forEach ( view => view.refresh () );
-
-    },
-
-    refreshInterval ( interval ) {
-
-      setInterval ( Utils.ui.refresh, interval );
 
     },
 
