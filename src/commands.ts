@@ -35,7 +35,7 @@ function helperAddProjectToWorkspace ( project ) {
 
   const commands = [
     `${app} --add "${projectPath}"`,
-    'logout'
+    'exit 0'
   ];
 
   const term = vscode.window.createTerminal ( 'Projects+ - Add to Workspace' );
@@ -57,12 +57,13 @@ async function helperOpenGroup ( group ) {
         firstProject = projects[0],
         firstProjectPath = Utils.path.untildify ( firstProject.path ),
         otherProjects = projects.slice ( 1 ),
-        otherProjectsPaths = otherProjects.map ( project => Utils.path.untildify ( project.path ) ),
-        commands = [];
+        otherProjectsPaths = otherProjects.map ( project => Utils.path.untildify ( project.path ) );
 
-  commands.push ( `${app} "${firstProjectPath}"` );
-  commands.push ( `${app} --add ${otherProjectsPaths.map ( path => `"${path}"` ).join ( ' ' )}` ); //FIXME: It may not work (https://github.com/Microsoft/vscode/issues/38137) and can't be split up (https://github.com/Microsoft/vscode/issues/38138)
-  commands.push ( 'logout' );
+  const commands = [
+    `${app} "${firstProjectPath}"`,
+    `${app} --add ${otherProjectsPaths.map ( path => `"${path}"` ).join ( ' ' )}`, //FIXME: It may not work (https://github.com/Microsoft/vscode/issues/38137) and can't be split up (https://github.com/Microsoft/vscode/issues/38138)
+    'exit 0'
+  ];
 
   const term = vscode.window.createTerminal ( 'Projects+ - Open Group' );
 
