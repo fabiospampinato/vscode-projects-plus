@@ -12,7 +12,7 @@ It comes packed with a lot of features:
 - **GitTower integration** (macOS): if you are already using the awesome [GitTower](https://www.git-tower.com) for managing your repositories this extension can automatically import your repositories!
 - **VSCode/Git/SVN/HG integration**: it can find your VSCode, Git, SubVersion and Mercurial projects too.
 - **Customizable**: add icons, sort groups/repositories manually or by name, custom indentation width, hide paths/descriptions, switch paths/descriptions position, customizable statusbar component.
-- **Explorer view**: it adds an explorer view for easy switching between projects.
+- **Explorer/Activity Bar view**: it adds a view for easy switching between projects.
 - **Extra informations**: it can show you extra informations about your projects:
   - **Branch** (Git): enable the `projects.showBranch` setting to have the branch of a repository displayed next to its name. You can filter out branches via the `projects.ignoreBranches` setting.
   - **Dirty state** (Git): enable the `projects.checkDirty` setting to have an icon indicating that a repository is dirty (has uncommitted changes) next to its name. If you have many projects the very first time you open your projects list it may tike a bit.
