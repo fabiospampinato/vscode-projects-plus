@@ -194,7 +194,7 @@
         "projects.viewAllEnabled": {
           "type": "boolean",
           "description": "Show or hide the \"Projects\" explorer view",
-          "default": true
+          "default": false
         }
       }
     },
@@ -289,9 +289,24 @@
     "views": {
       "explorer": [
         {
-          "id": "projects.views.all",
+          "id": "projects.views.explorer.all",
           "name": "Projects",
           "when": "config.projects.viewAllEnabled == true"
+        }
+      ],
+      "projects": [
+        {
+          "id": "projects.views.activity_bar.all",
+          "name": "All"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "projects",
+          "title": "Projects",
+          "icon": "resources/icons/activity_bar_logo.svg"
         }
       ]
     },

@@ -63,7 +63,8 @@ const Utils = {
 
     const viewAll = new ViewAll ();
 
-    vscode.window.registerTreeDataProvider ( 'projects.views.all', viewAll );
+    vscode.window.registerTreeDataProvider ( 'projects.views.explorer.all', viewAll );
+    vscode.window.registerTreeDataProvider ( 'projects.views.activity_bar.all', viewAll );
 
     Utils.ui.views.push ( viewAll );
 
