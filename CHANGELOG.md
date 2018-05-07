@@ -1,3 +1,6 @@
+### Version 1.17.0
+- Added a view to the activity bar
+
 ### Version 1.16.2
 - Explorer view: fixed left-click on projects to open them
 - Refreshing contributed views only when necessary
