@@ -1,3 +1,7 @@
+### Version 1.17.1
+- Updated readme
+- Fixed actions on contributed views
+
 ### Version 1.17.0
 - Added a view to the activity bar
 
