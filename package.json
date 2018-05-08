@@ -336,35 +336,65 @@
       "view/title": [
         {
           "command": "projects.editConfig",
-          "when": "view == projects.views.all",
+          "when": "view == projects.views.explorer.all",
           "group": "navigation"
         },
         {
           "command": "projects.refresh",
-          "when": "view == projects.views.all",
+          "when": "view == projects.views.explorer.all",
+          "group": "navigation"
+        },
+        {
+          "command": "projects.editConfig",
+          "when": "view == projects.views.activity_bar.all",
+          "group": "navigation"
+        },
+        {
+          "command": "projects.refresh",
+          "when": "view == projects.views.activity_bar.all",
           "group": "navigation"
         }
       ],
       "view/item/context": [
         {
           "command": "projects.viewOpenProject",
-          "when": "view == projects.views.all && viewItem == project"
+          "when": "view == projects.views.explorer.all && viewItem == project"
         },
         {
           "command": "projects.viewOpenProjectInNewWindow",
-          "when": "view == projects.views.all && viewItem == project"
+          "when": "view == projects.views.explorer.all && viewItem == project"
         },
         {
           "command": "projects.viewAddProjectToWorkspace",
-          "when": "view == projects.views.all && viewItem == project"
+          "when": "view == projects.views.explorer.all && viewItem == project"
         },
         {
           "command": "projects.viewOpenGroup",
-          "when": "view == projects.views.all && viewItem == group"
+          "when": "view == projects.views.explorer.all && viewItem == group"
         },
         {
           "command": "projects.viewSwitchGroup",
-          "when": "view == projects.views.all && viewItem == group"
+          "when": "view == projects.views.explorer.all && viewItem == group"
+        },
+        {
+          "command": "projects.viewOpenProject",
+          "when": "view == projects.views.activity_bar.all && viewItem == project"
+        },
+        {
+          "command": "projects.viewOpenProjectInNewWindow",
+          "when": "view == projects.views.activity_bar.all && viewItem == project"
+        },
+        {
+          "command": "projects.viewAddProjectToWorkspace",
+          "when": "view == projects.views.activity_bar.all && viewItem == project"
+        },
+        {
+          "command": "projects.viewOpenGroup",
+          "when": "view == projects.views.activity_bar.all && viewItem == group"
+        },
+        {
+          "command": "projects.viewSwitchGroup",
+          "when": "view == projects.views.activity_bar.all && viewItem == group"
         }
       ]
     }
