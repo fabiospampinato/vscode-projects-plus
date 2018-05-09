@@ -133,7 +133,7 @@ The configuration is an object that looks like this:
 
 ![Auto-import projects](resources/demo/statusbar.gif)
 
-#### Explorer view:
+#### Explorer/Activity Bar view:
 
 ![Explorer view](resources/demo/explorer.gif)
 
@@ -144,6 +144,7 @@ The configuration is an object that looks like this:
 
 ## Hints:
 
+- **Activity Bar**: you can switch the focus to the `Projects` activity bar view by assigning a shortcut to the `workbench.view.extension.projects` command.
 - **GitTower**: organize your repositories there and then run `Terminals: Refresh` to have this extension copy your configuration.
 - **Sync projects**: make `projects.configPath` point to a file in your Dropbox directory to have it synced between computers. Write paths as `~/path/to/project` in order to make them cross-platform.
 - **[Commands](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-commands)**: Use this other extension and the `projects.openByName` command to add buttons to the statusbar for easy switching between projects or groups.
