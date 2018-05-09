@@ -1,3 +1,6 @@
+### Version 1.17.2
+- Readme: added an hint about focusing to our activity bar view
+
 ### Version 1.17.1
 - Updated readme
 - Fixed actions on contributed views
