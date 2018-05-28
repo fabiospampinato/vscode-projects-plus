@@ -137,7 +137,7 @@ const Utils = {
       if ( isTextDocument ) {
 
         return vscode.workspace.openTextDocument ( fileuri )
-                               .then ( vscode.window.showTextDocument );
+                               .then ( doc => vscode.window.showTextDocument ( doc, { preview: false } ) );
 
       } else {
 
