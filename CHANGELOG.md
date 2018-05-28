@@ -1,3 +1,6 @@
+### Version 1.17.3
+- Ensuring the configuration will be opened as a non-preview editor
+
 ### Version 1.17.2
 - Readme: added an hint about focusing to our activity bar view
 
