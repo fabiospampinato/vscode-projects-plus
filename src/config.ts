@@ -103,6 +103,9 @@ const Config = {
           if ( !prevItem ) {
             prev.push ( nextItem );
           } else {
+            if ( prevItem.path && nextItem.path && prevItem.path.endsWith ( '.code-workspace' ) && !nextItem.path.endsWith ( '.code-workspace' ) ) {
+              nextItem.path = prevItem.path;
+            }
             roughMerge ( prevItem, nextItem );
           }
         });
