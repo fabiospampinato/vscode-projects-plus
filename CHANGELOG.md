@@ -1,3 +1,6 @@
+### Version 1.17.4
+- Config: don’t override the path if the current one points to a `.code-workspace` file
+
 ### Version 1.17.3
 - Ensuring the configuration will be opened as a non-preview editor
 
