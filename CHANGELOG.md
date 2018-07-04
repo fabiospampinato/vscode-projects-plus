@@ -1,3 +1,6 @@
+### Version 1.18.0
+- Added GitTower v3 support
+
 ### Version 1.17.4
 - Config: don’t override the path if the current one points to a `.code-workspace` file
 
