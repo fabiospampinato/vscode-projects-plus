@@ -10,7 +10,10 @@ import Utils from '../../utils';
 
 /* VARIABLES */
 
-const BOOKMARKS_PATH = os.homedir () + '/Library/Application\ Support/com.fournova.Tower2/bookmarks-v2.plist';
+const BOOKMARKS_PATHS = [
+  `${os.homedir ()}/Library/Application\ Support/com.fournova.Tower2/bookmarks-v2.plist`,
+  `${os.homedir ()}/Library/Application\ Support/com.fournova.Tower3/bookmarks-v2.plist`
+];
 
 /* GIT TOWER */
 
@@ -18,7 +21,28 @@ async function fetchProjectsGitTower () {
 
   if ( !/darwin/.test ( process.platform ) ) return; //TODO: Add Windows support
 
-  const file = await Utils.file.read ( BOOKMARKS_PATH );
+  async function getFile () {
+
+    let mtime = new Date ( 0 ),
+        content;
+
+    for ( let filePath of BOOKMARKS_PATHS ) {
+
+      const stat = await Utils.file.stat ( filePath );
+
+      if ( !stat || stat.mtime.getTime () <= mtime.getTime () ) continue;
+
+      mtime = stat.mtime;
+
+      content = await Utils.file.read ( filePath );
+
+    }
+
+    return content;
+
+  }
+
+  const file = await getFile ();
 
   if ( !file ) return {};
 
