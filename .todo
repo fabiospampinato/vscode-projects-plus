@@ -2,6 +2,7 @@
 Now:
   ☐ A `Project: Add to Workspace` command
   ☐ Add a `projects.favorites` view
+  ☐ Use `ExtensionContext.globalState` instead of custom files
 
 Next:
   ☐ Fix active project showed on top of the others (distracting)(test by searching for "vscode-")
