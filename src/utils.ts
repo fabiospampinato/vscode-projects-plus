@@ -703,7 +703,7 @@ const Utils = {
           title: 'open',
           tooltip: `Open ${obj.name}`,
           command: 'projects.helperOpenProject',
-          arguments: [obj]
+          arguments: [obj, config.viewOpenInNewWindow]
         };
 
         return new ViewProjectItem ( obj, name, command, vscode.TreeItemCollapsibleState.None );

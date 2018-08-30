@@ -195,6 +195,11 @@
           "type": "boolean",
           "description": "Show or hide the \"Projects\" explorer view",
           "default": false
+        },
+        "projects.viewOpenInNewWindow": {
+          "type": "boolean",
+          "description": "Open projects in a new window",
+          "default": false
         }
       }
     },
