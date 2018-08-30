@@ -1,3 +1,6 @@
+### Version 1.19.0
+- Added `projects.viewOpenInNewWindow` setting
+
 ### Version 1.18.0
 - Added GitTower v3 support
 
