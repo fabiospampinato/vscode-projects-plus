@@ -114,36 +114,36 @@ The configuration is an object that looks like this:
 
 ## Demo
 
-#### Auto-import projects:
+#### Auto-import projects
 
 ![Auto-import projects](resources/demo/refresh.gif)
 
-#### Save project:
+#### Save project
 
 ![Auto-import projects](resources/demo/save.gif)
 
-#### Group switching:
+#### Group switching
 
 ![Auto-import projects](resources/demo/switch.gif)
 
-#### QuickPick customizations:
+#### QuickPick customizations
 
 ![Auto-import projects](resources/demo/quickpick.gif)
 
-#### StatusBar customizations:
+#### StatusBar customizations
 
 ![Auto-import projects](resources/demo/statusbar.gif)
 
-#### Explorer/Activity Bar view:
+#### Explorer/Activity Bar view
 
 ![Explorer view](resources/demo/explorer.gif)
 
-## Related:
+## Related
 
 - **[Projects+ Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-projects-plus-todo-plus)**: Bird's-eye view over your projects, view all your todo files aggregated into one.
 - **[Open in GitTower](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-open-in-gittower)**: use this extension for opening your projects in GitTower.
 
-## Hints:
+## Hints
 
 - **Activity Bar**: you can switch the focus to the `Projects` activity bar view by assigning a shortcut to the `workbench.view.extension.projects` command.
 - **GitTower**: organize your repositories there and then run `Terminals: Refresh` to have this extension copy your configuration.
