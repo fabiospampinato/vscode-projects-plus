@@ -1,3 +1,6 @@
+### Version 1.19.1
+- Bundling with webpack
+
 ### Version 1.19.0
 - Added `projects.viewOpenInNewWindow` setting
 
