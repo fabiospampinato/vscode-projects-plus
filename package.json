@@ -412,6 +412,8 @@
     "test": "node ./node_modules/vscode/bin/test"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.118",
+    "@types/node": "^10.12.8",
     "absolute": "0.0.1",
     "chokidar": "^2.0.3",
     "json5": "^0.5.1",
@@ -424,8 +426,6 @@
     "walker": "^1.0.7"
   },
   "devDependencies": {
-    "@types/node": "^6.0.40",
-    "@types/lodash": "^4.14.59",
     "ts-loader": "^5.2.1",
     "typescript": "^2.4.1",
     "vscode": "^1.1.4",
