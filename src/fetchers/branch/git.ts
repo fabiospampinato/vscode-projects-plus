@@ -49,7 +49,7 @@ async function fetchBranchGit ( folderPath, updateCache = true ) {
 
     } else {
 
-      const command = 'git symbolic-ref --short HEAD --',
+      const command = 'git symbolic-ref --short HEAD',
             commandOptions = {
               cwd: absFolderPath,
               encoding: 'utf8'

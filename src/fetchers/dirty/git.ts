@@ -49,7 +49,7 @@ async function fetchDirtyGit ( folderPath, updateCache = true ) {
 
     } else {
 
-      const command = 'git status --porcelain --untracked-files | tail -n1',
+      const command = 'git status --porcelain --untracked-files',
             commandOptions = {
               cwd: absFolderPath,
               encoding: 'utf8'
