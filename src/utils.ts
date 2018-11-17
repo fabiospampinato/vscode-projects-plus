@@ -507,7 +507,7 @@ const Utils = {
 
       const Oct2ASCII = {
         'arrow-small-right': '→',
-        'cloud-upload': '↑',
+        'diff-modified': '✴',
         'alert': '△'
       };
 
@@ -637,7 +637,7 @@ const Utils = {
 
           if ( ( config.checkDirty || config.filterDirty ) && dirtyData[project.path] ) {
 
-            project._iconsRight.push ( 'cloud-upload' );
+            project._iconsRight.push ( 'diff-modified' );
 
           }
 
