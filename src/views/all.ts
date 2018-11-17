@@ -10,16 +10,16 @@ import Utils from '../utils';
 
 class All extends View {
 
-	async getChildren ( item?: Item ): Promise<Item[]> {
+  async getChildren ( item?: Item ): Promise<Item[]> {
 
-		const config = await Config.get (),
-					configFiltered = Utils.config.filterByGroup ( config, config.group ),
-					obj = item ? item.obj : configFiltered,
-					{items} = await Utils.ui.makeItems ( config, obj, Utils.ui.makeViewItem, 0, 0 );
+    const config = await Config.get (),
+          configFiltered = Utils.config.filterByGroup ( config, config.group ),
+          obj = item ? item.obj : configFiltered,
+          {items} = await Utils.ui.makeItems ( config, obj, Utils.ui.makeViewItem, 0, 0 );
 
-		return items;
+    return items;
 
-	}
+  }
 
 }
 

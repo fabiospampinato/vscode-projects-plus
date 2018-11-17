@@ -1,7 +1,7 @@
 # Projects+
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/fabiospampinato/vscode-projects-plus/master/resources/logo/logo.png" width="128" alt="Logo">
+  <img src="https://raw.githubusercontent.com/fabiospampinato/vscode-projects-plus/master/resources/logo/logo.png" width="128" alt="Logo">
 </p>
 
 An extension for managing projects. Feature rich, customizable, automatically finds your projects.
