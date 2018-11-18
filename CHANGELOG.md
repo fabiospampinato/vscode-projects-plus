@@ -1,3 +1,8 @@
+### Version 1.20.0
+- Updated dirty-state icon
+- Updated some git commands
+- Added a `projects.showAheadBehind` setting
+
 ### Version 1.19.4
 - Readme: using hi-res logo
 
