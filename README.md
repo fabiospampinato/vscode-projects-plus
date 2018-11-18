@@ -14,6 +14,7 @@ It comes packed with a lot of features:
 - **Customizable**: add icons, sort groups/repositories manually or by name, custom indentation width, hide paths/descriptions, switch paths/descriptions position, customizable statusbar component.
 - **Explorer/Activity Bar view**: it adds a view for easy switching between projects.
 - **Extra informations**: it can show you extra informations about your projects:
+  - **Ahead/Behind** (Git): enable the `projects.showAheadBehind` setting to see how many commits ahead or behind the repository is.
   - **Branch** (Git): enable the `projects.showBranch` setting to have the branch of a repository displayed next to its name. You can filter out branches via the `projects.ignoreBranches` setting.
   - **Dirty state** (Git): enable the `projects.checkDirty` setting to have an icon indicating that a repository is dirty (has uncommitted changes) next to its name. If you have many projects the very first time you open your projects list it may tike a bit.
   - **Path existence**: enable the `projects.checkPaths` setting to have an icon indicating which projects are currently non-openable next to their name. For instance if you have projects inside encrypted disk images this extension will basically tell you which are unmounted.
@@ -62,6 +63,7 @@ It adds 4 shortcuts:
   "projects.invertPathAndDescription": false, // Invert a project path and description in the quickpick
   "projects.showPaths": true, // Show projects' paths in the quickpick
   "projects.showDescriptions": true, // Show projects' descriptions in the quickpick
+  "projects.showAheadBehind": false, // Show how many commits ahead or behind the repository is
   "projects.showBranch": false, // Show projects' branches in the quickpick
   "projects.ignoreBranches": ["master"], // Prevent these branches from being shown
   "projects.checkDirty": false, // Check projects' repositories for uncommitted changes

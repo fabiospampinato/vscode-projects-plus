@@ -11,7 +11,7 @@ import * as Fetchers from './fetchers';
 import Utils from './utils';
 import ViewProjectItem from './views/items/project';
 import ViewGroupItem from './views/items/group';
-const {fetchPathDescription, enhanceWithDescriptions, fetchProjectsFolders, fetchProjectsGitTower, BranchGitCache, DirtyGitCache} = Fetchers; //FIXME: Importing them directly doesn't work for some reason
+const {fetchPathDescription, enhanceWithDescriptions, fetchProjectsFolders, fetchProjectsGitTower, AheadBehindGitCache, BranchGitCache, DirtyGitCache} = Fetchers; //FIXME: Importing them directly doesn't work for some reason
 
 /* HELPERS */
 
@@ -223,6 +223,7 @@ async function _refresh () {
 
   await Config.write ( config.configPath, configEnhanced );
 
+  await AheadBehindGitCache.delete ();
   await BranchGitCache.delete ();
   await DirtyGitCache.delete ();
 

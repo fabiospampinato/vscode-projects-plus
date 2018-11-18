@@ -14,6 +14,7 @@ import * as untildify from 'untildify';
 import * as vscode from 'vscode';
 import Config from './config';
 import * as Commands from './commands';
+import {fetchAheadBehindGeneralMulti} from './fetchers/ahead_behind/general';
 import {fetchBranchGeneralMulti} from './fetchers/branch/general';
 import {fetchDirtyGeneralMulti} from './fetchers/dirty/general';
 import ViewAll from './views/all';
@@ -503,28 +504,22 @@ const Utils = {
 
   icons: {
 
-    toASCII ( str ) {
-
-      const Oct2ASCII = {
-        'arrow-small-right': '→',
-        'diff-modified': '✴',
-        'alert': '△'
-      };
-
-      _.forOwn ( Oct2ASCII, ( ASCII, Oct ) => {
-
-        str = str.replace ( `$(${Oct})`, ASCII );
-
-      });
-
-      return str;
-
+    ASCII: {
+      arrow_up: '↑',
+      arrow_right: '→',
+      arrow_down: '↓',
+      arrow_left: '←',
+      dirty: '✴',
+      warning: '△'
     },
 
-    strip ( str ) {
-
-      return str.replace ( /\$\([^\)]+\)/gm, '' ).trim ();
-
+    Octicons: {
+      arrow_up: '$(arrow-small-up)',
+      arrow_right: '$(arrow-small-right)',
+      arrow_down: '$(arrow-small-down)',
+      arrow_left: '$(arrow-small-left)',
+      dirty: '$(diff-modified)',
+      warning: '$(alert)'
     }
 
   },
@@ -544,10 +539,12 @@ const Utils = {
       /* VARIABLES */
 
       const items = [],
+            icons = config.iconsASCII || ( itemMaker === Utils.ui.makeViewItem ) ? Utils.icons.ASCII : Utils.icons.Octicons,
             rootPath = Utils.folder.getActiveRootPath (),
             projects = Utils.config.getProjects ( obj ),
             projectsPaths = projects.map ( project => project.path ),
             dirtyData = ( config.checkDirty || config.filterDirty ) && !onlyGroups ? await fetchDirtyGeneralMulti ( projectsPaths ) : {},
+            aheadBehindData = config.showAheadBehind && !onlyGroups ? await fetchAheadBehindGeneralMulti ( projectsPaths ) : {},
             branchData = config.showBranch && !onlyGroups ? await fetchBranchGeneralMulti ( projectsPaths ) : {},
             activeGroup = config.group && Utils.config.getGroupByName ( config, config.group ),
             activeProject = rootPath ? Utils.config.getProjectByPath ( config, rootPath ) : false,
@@ -561,12 +558,14 @@ const Utils = {
       if ( onlyGroups ) {
 
         const allGroups: any = {
-          name: config.allGroupsName
+          name: config.allGroupsName,
+          _iconsLeft: [],
+          _iconsRight: []
         };
 
         if ( config.activeIndicator && !activeGroup ) {
 
-          allGroups._iconsLeft = ['arrow-small-right'];
+          allGroups._iconsLeft.push ( icons.arrow_right );
 
         }
 
@@ -593,7 +592,7 @@ const Utils = {
 
         if ( config.activeIndicator && onlyGroups && activeGroup && activeGroup.name === group.name ) {
 
-          group._iconsLeft.push ( 'arrow-small-right' );
+          group._iconsLeft.push ( icons.arrow_right );
 
         }
 
@@ -613,7 +612,7 @@ const Utils = {
 
         if ( config.checkPaths && !Utils.folder.exists ( Utils.path.untildify ( project.path ) ) ) {
 
-          project._iconsRight.push ( 'alert' );
+          project._iconsRight.push ( icons.warning );
 
         } else {
 
@@ -631,13 +630,22 @@ const Utils = {
 
           if ( config.activeIndicator && !onlyGroups && activeProject && activeProjectPath === Utils.path.untildify ( project.path ) ) {
 
-            project._iconsLeft.push ( 'arrow-small-right' );
+            project._iconsLeft.push ( icons.arrow_right );
 
           }
 
           if ( ( config.checkDirty || config.filterDirty ) && dirtyData[project.path] ) {
 
-            project._iconsRight.push ( 'diff-modified' );
+            project._iconsRight.push ( icons.dirty );
+
+          }
+
+          if ( config.showAheadBehind && !onlyGroups && aheadBehindData[project.path] ) {
+
+            const {ahead, behind} = aheadBehindData[project.path];
+
+            if ( ahead ) project._iconsRight.push ( `${icons.arrow_up}${ahead}` );
+            if ( behind ) project._iconsRight.push ( `${icons.arrow_down}${behind}` );
 
           }
 
@@ -656,21 +664,15 @@ const Utils = {
     makeQuickPickItem ( config, obj, depth ) {
 
       const depthSpaces = _.repeat ( '\u00A0', config.indentationSpaces * depth ), // ' ' will be trimmed
-            icon = obj.icon ? `$(${obj.icon}) ` : '',
-            _iconsLeft = obj._iconsLeft ? obj._iconsLeft.map ( icon => `$(${icon}) ` ).join ( '' ) : '', //TODO: Make this public
-            _iconsRight = obj._iconsRight ? obj._iconsRight.map ( icon => ` $(${icon})` ).join ( '' ) : '', //TODO: Make this public
+            icons = config.iconsASCII ? Utils.icons.ASCII : Utils.icons.Octicons,
+            icon = obj.icon ? ( icons[obj.icon] ? `${icons[obj.icon]} ` : `$(${obj.icon}) ` ) : '',
+            _iconsLeft = obj._iconsLeft ? `${obj._iconsLeft.join ( ' ' )} ` : '', //TODO: Make this public
+            _iconsRight = obj._iconsRight ? ` ${obj._iconsRight.join ( ' ' )}` : '', //TODO: Make this public
             path = config.showPaths && obj.path,
             description = config.showDescriptions && obj.description,
             topDetail = config.invertPathAndDescription ? description : path,
-            bottomDetail = config.invertPathAndDescription ? ( path ? `${depthSpaces}${path}` : '' ) : ( description ? `${depthSpaces}${description}` : '' );
-
-      let name = `${depthSpaces}${_iconsLeft}${icon}${obj.name}${_iconsRight}`;
-
-      if ( config.iconsASCII ) {
-
-        name = Utils.icons.toASCII ( name );
-
-      }
+            bottomDetail = config.invertPathAndDescription ? ( path ? `${depthSpaces}${path}` : '' ) : ( description ? `${depthSpaces}${description}` : '' ),
+            name = `${depthSpaces}${_iconsLeft}${icon}${obj.name}${_iconsRight}`;
 
       return {
         obj,
@@ -683,19 +685,10 @@ const Utils = {
 
     makeViewItem ( config, obj, depth ) {
 
-      const icon = obj.icon ? `$(${obj.icon}) ` : '',
-            _iconsLeft = obj._iconsLeft ? obj._iconsLeft.map ( icon => `$(${icon}) ` ).join ( '' ) : '', //TODO: Make this public
-            _iconsRight = obj._iconsRight ? obj._iconsRight.map ( icon => ` $(${icon})` ).join ( '' ) : ''; //TODO: Make this public
-
-      let name = `${_iconsLeft}${icon}${obj.name}${_iconsRight}`;
-
-      if ( config.iconsASCII ) {
-
-        name = Utils.icons.toASCII ( name );
-
-      }
-
-      name = Utils.icons.strip ( name ); //FIXME: Required because of https://github.com/Microsoft/vscode/issues/32956
+      const icon = obj.icon ? ( Utils.icons.ASCII[obj.icon] ? `${Utils.icons.ASCII[obj.icon]} ` : '' ) : '',
+            _iconsLeft = obj._iconsLeft ? `${obj._iconsLeft.join ( ' ' )} ` : '', //TODO: Make this public
+            _iconsRight = obj._iconsRight ? ` ${obj._iconsRight.join ( ' ' )}` : '', //TODO: Make this public
+            name = `${_iconsLeft}${icon}${obj.name}${_iconsRight}`;
 
       if ( obj.path ) { // Project
 
