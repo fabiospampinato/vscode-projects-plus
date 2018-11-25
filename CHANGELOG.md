@@ -1,3 +1,6 @@
+### Version 1.21.0
+- Added support for paths starting with `~/` to the `configPath`, `refreshIgnoreFolders` and `refreshRoots` settings
+
 ### Version 1.20.0
 - Updated dirty-state icon
 - Updated some git commands
