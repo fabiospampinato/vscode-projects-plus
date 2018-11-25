@@ -23,9 +23,9 @@ const Config = {
 
   getExtension ( extension = 'projects' ) {
 
-    const config = vscode.workspace.getConfiguration ().get ( extension ) as any;
+    const config = Config.untildify ( vscode.workspace.getConfiguration ().get ( extension ) ) as any;
 
-    if ( !config['configPath'] ) delete config['configPath'];
+    if ( !config.configPath ) delete config.configPath;
 
     return config;
 
@@ -88,6 +88,32 @@ const Config = {
 
     Statusbar.update ();
     Utils.ui.refresh ();
+
+  },
+
+  untildify ( config ) {
+
+    const keys = ['configPath', 'refreshIgnoreFolders', 'refreshRoots'];
+
+    keys.forEach ( key => {
+
+      if ( config[key] ) {
+
+        if ( _.isArray ( config[key] ) ) {
+
+          config[key] = config[key].map ( Utils.path.untildify );
+
+        } else {
+
+          config[key] = Utils.path.untildify ( config[key] );
+
+        }
+
+      }
+
+    });
+
+    return config;
 
   },
 
