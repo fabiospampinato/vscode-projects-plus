@@ -1,3 +1,6 @@
+### Version 1.21.1
+- Avoiding using chokidar
+
 ### Version 1.21.0
 - Added support for paths starting with `~/` to the `configPath`, `refreshIgnoreFolders` and `refreshRoots` settings
 
