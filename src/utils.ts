@@ -44,7 +44,7 @@ const Utils = {
 
     /* HARD CODED */
 
-    ['projects.helperOpenProject', 'helperAddProjectToWorkspace', 'projects.helperOpenGroup', 'projects.openByName'].forEach ( command => {
+    ['projects.helperOpenProject', 'helperAddProjectToWorkspace', 'projects.helperOpenGroup', 'projects.openByName', 'projects.viewItemSmartOpenProject'].forEach ( command => {
 
       const commandName = _.last ( command.split ( '.' ) ) as string,
             handler = Commands[commandName],
@@ -695,7 +695,7 @@ const Utils = {
         const command = {
           title: 'open',
           tooltip: `Open ${obj.name}`,
-          command: 'projects.helperOpenProject',
+          command: 'projects.viewItemSmartOpenProject',
           arguments: [obj, config.viewOpenInNewWindow]
         };
 
