@@ -15,6 +15,17 @@ const {fetchPathDescription, enhanceWithDescriptions, fetchProjectsFolders, fetc
 
 /* HELPERS */
 
+function vscodeIsEmpty () {
+  const workspaceFolders = vscode.workspace.workspaceFolders;
+  const visibleTextEditors = vscode.window.visibleTextEditors;
+  const activeTextEditor = vscode.window.activeTextEditor;
+
+  return (workspaceFolders == null || workspaceFolders.length === 0)
+        && (visibleTextEditors == null || visibleTextEditors.length === 0)
+        && activeTextEditor == null;
+
+}
+
 function helperOpenProject ( project, inNewWindow: boolean = false ) {
 
   const {name, path} = project,
@@ -384,6 +395,12 @@ async function viewSwitchGroup ( Item: ViewGroupItem ) {
 
 }
 
+function viewItemSmartOpenProject ( project, inNewWindow: boolean = false ) {
+
+  return helperOpenProject ( project, !vscodeIsEmpty() && inNewWindow );
+
+}
+
 /* EXPORT */
 
-export {initConfig, editConfig, open, openInNewWindow, openByName, addToWorkspace, helperOpenProject, helperAddProjectToWorkspace, helperOpenGroup, refresh, remove, save, openGroup, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewAddProjectToWorkspace, viewOpenGroup, viewSwitchGroup};
+export {initConfig, editConfig, open, openInNewWindow, openByName, addToWorkspace, helperOpenProject, helperAddProjectToWorkspace, helperOpenGroup, refresh, remove, save, openGroup, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewAddProjectToWorkspace, viewOpenGroup, viewSwitchGroup, viewItemSmartOpenProject};
