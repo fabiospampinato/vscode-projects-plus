@@ -85,6 +85,15 @@ const Utils = {
 
   },
 
+  isEmpty (): boolean {
+
+    const {workspaceFolders} = vscode.workspace,
+          {activeTextEditor, visibleTextEditors} = vscode.window;
+
+    return ( !workspaceFolders || !workspaceFolders.length ) && !visibleTextEditors.length && !activeTextEditor;
+
+  },
+
   async exec ( command: string, options = {}, fallback? ) {
 
     try {
@@ -696,7 +705,7 @@ const Utils = {
           title: 'open',
           tooltip: `Open ${obj.name}`,
           command: 'projects.helperOpenProject',
-          arguments: [obj, config.viewOpenInNewWindow]
+          arguments: [obj, config.viewOpenInNewWindow, true]
         };
 
         return new ViewProjectItem ( obj, name, command, vscode.TreeItemCollapsibleState.None );

@@ -15,7 +15,7 @@ const {fetchPathDescription, enhanceWithDescriptions, fetchProjectsFolders, fetc
 
 /* HELPERS */
 
-function helperOpenProject ( project, inNewWindow: boolean = false ) {
+function helperOpenProject ( project, inNewWindow: boolean = false, inSameWindowIfEmpty: boolean = false ) {
 
   const {name, path} = project,
         absPath = Utils.path.untildify ( path ),
@@ -23,6 +23,12 @@ function helperOpenProject ( project, inNewWindow: boolean = false ) {
         isCurrent = absPath === rootPath;
 
   if ( isCurrent ) return vscode.window.showWarningMessage ( `"${name}" is already the opened project` );
+
+  if ( inSameWindowIfEmpty ) {
+
+    inNewWindow = Utils.isEmpty () ? false : inNewWindow;
+
+  }
 
   return Utils.folder.open ( absPath, inNewWindow );
 
