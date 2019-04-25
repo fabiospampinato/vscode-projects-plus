@@ -1,3 +1,6 @@
+### Version 1.22.0
+- Opening projects from the activity bar view in the current window if it's empty
+
 ### Version 1.21.1
 - Avoiding using chokidar
 
