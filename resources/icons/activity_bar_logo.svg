@@ -1,11 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1024 1024" style="enable-background:new 0 0 1024 1024;" xml:space="preserve">
-<g id="svgg">
-	<path id="path0" d="M247.3,283.5c-11.5,3.1-19.1,10.2-24,22l-1.8,4.4v206.5v206.5l1.6,4.5c2.4,5.3,7.1,10,12.1,12.5l3.1,1.4h273.3
-		H785l3.1-1.2c3.7-1.6,9.7-7.1,11.3-10.5c3.1-6.2,3.1,0.8,2.9-178.1c0-186.7-0.2-197.7-2.4-203.1c-4-9.4-11.3-16.7-20.4-20.4
-		l-3.4-1.3L608.5,326l-167.7-0.3l-2.9-1.4c-6.3-3.4-11.3-8.7-19.1-20.8c-7.2-10.9-12.9-16.3-20.3-19.1l-3.5-1.4l-72.4,0
-		c-61.5-0.2-72.5,0-75.5,0.6"/>
-</g>
+<svg width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M29 23.4C29 24.1426 28.705 24.8548 28.1799 25.3799C27.6548 25.905 26.9426 26.2 26.2 26.2H3.8C3.05739 26.2 2.3452 25.905 1.8201 25.3799C1.295 24.8548 1 24.1426 1 23.4V3.8C1 3.05739 1.295 2.3452 1.8201 1.8201C2.3452 1.295 3.05739 1 3.8 1H10.8L13.6 5.2H26.2C26.9426 5.2 27.6548 5.495 28.1799 6.0201C28.705 6.5452 29 7.25739 29 8V23.4Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
