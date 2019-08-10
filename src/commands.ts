@@ -350,6 +350,8 @@ async function openGroup () {
 
 }
 
+const edit = save;
+
 async function switchGroup () {
 
   open ( undefined, true );
@@ -392,4 +394,4 @@ async function viewSwitchGroup ( Item: ViewGroupItem ) {
 
 /* EXPORT */
 
-export {initConfig, editConfig, open, openInNewWindow, openByName, addToWorkspace, helperOpenProject, helperAddProjectToWorkspace, helperOpenGroup, refresh, remove, save, openGroup, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewAddProjectToWorkspace, viewOpenGroup, viewSwitchGroup};
+export {initConfig, editConfig, open, openInNewWindow, openByName, addToWorkspace, helperOpenProject, helperAddProjectToWorkspace, helperOpenGroup, refresh, remove, save, edit, openGroup, switchGroup, viewOpenProject, viewOpenProjectInNewWindow, viewAddProjectToWorkspace, viewOpenGroup, viewSwitchGroup};

@@ -246,6 +246,10 @@
         "title": "Project: Save"
       },
       {
+        "command": "projects.edit",
+        "title": "Project: Edit"
+      },
+      {
         "command": "projects.openGroup",
         "title": "Projects: Open Group"
       },

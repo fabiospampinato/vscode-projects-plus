@@ -29,12 +29,13 @@ ext install fabiospampinato.vscode-projects-plus
 
 ## Usage
 
-It adds 9 new commands to the command palette:
+It adds 10 new commands to the command palette:
 
 ```js
 'Project: Open' // Open a project
 'Project: Open in New Window' // Open a project in a new window
 'Project: Add to Workspace' // Add a project to the workspace
+'Project: Edit' // Edit this project
 'Project: Save' // Save this project in the configuration file
 'Project: Remove' // Remove this project from the configuration file
 'Projects: Edit Configuration' // Open the configuration file
