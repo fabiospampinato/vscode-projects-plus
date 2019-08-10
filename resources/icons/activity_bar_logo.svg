@@ -1,11 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1024 1024" style="enable-background:new 0 0 1024 1024;" xml:space="preserve">
-<g id="svgg">
-	<path id="path0" d="M247.3,283.5c-11.5,3.1-19.1,10.2-24,22l-1.8,4.4v206.5v206.5l1.6,4.5c2.4,5.3,7.1,10,12.1,12.5l3.1,1.4h273.3
-		H785l3.1-1.2c3.7-1.6,9.7-7.1,11.3-10.5c3.1-6.2,3.1,0.8,2.9-178.1c0-186.7-0.2-197.7-2.4-203.1c-4-9.4-11.3-16.7-20.4-20.4
-		l-3.4-1.3L608.5,326l-167.7-0.3l-2.9-1.4c-6.3-3.4-11.3-8.7-19.1-20.8c-7.2-10.9-12.9-16.3-20.3-19.1l-3.5-1.4l-72.4,0
-		c-61.5-0.2-72.5,0-75.5,0.6"/>
-</g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-miterlimit:1;">
+    <g id="path0" transform="matrix(1.42705,0,0,1.34218,-238.449,-175.349)">
+        <path d="M247.3,283.5C235.8,286.6 228.2,293.7 223.3,305.5L221.5,309.9L221.5,722.9L223.1,727.4C225.5,732.7 230.2,737.4 235.2,739.9L238.3,741.3L785,741.3L788.1,740.1C791.8,738.5 797.8,733 799.4,729.6C802.5,723.4 802.5,730.4 802.3,551.5C802.3,364.8 802.1,373.171 799.9,367.771C795.9,358.371 788.6,351.071 779.5,347.371L776.1,346.071L608.5,345.371L440.8,345.071L437.9,343.671C431.6,340.271 405.9,287.2 398.5,284.4L395,283L322.6,283C261.1,282.8 250.1,283 247.1,283.6" style="fill-opacity:0;fill-rule:nonzero;stroke:black;stroke-width:46.92px;"/>
+    </g>
 </svg>
