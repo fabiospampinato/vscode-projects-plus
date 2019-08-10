@@ -1,3 +1,7 @@
+### Version 1.23.0
+- Updated icons, using the new outline style
+- Added a “Project: Edit” command
+
 ### Version 1.22.0
 - Opening projects from the activity bar view in the current window if it's empty
 
