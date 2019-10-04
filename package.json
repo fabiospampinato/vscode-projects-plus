@@ -19,7 +19,7 @@
     "url": "https://github.com/fabiospampinato/vscode-projects-plus"
   },
   "engines": {
-    "vscode": "^1.21.0"
+    "vscode": "^1.30.0"
   },
   "keywords": [
     "vscode",

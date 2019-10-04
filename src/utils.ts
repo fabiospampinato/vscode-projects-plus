@@ -696,8 +696,8 @@ const Utils = {
 
       const icon = obj.icon ? ( Utils.icons.ASCII[obj.icon] ? `${Utils.icons.ASCII[obj.icon]} ` : '' ) : '',
             _iconsLeft = obj._iconsLeft ? `${obj._iconsLeft.join ( ' ' )} ` : '', //TODO: Make this public
-            _iconsRight = obj._iconsRight ? ` ${obj._iconsRight.join ( ' ' )}` : '', //TODO: Make this public
-            name = `${_iconsLeft}${icon}${obj.name}${_iconsRight}`;
+            _iconsRight = obj._iconsRight ? obj._iconsRight.join ( ' ' ) : '', //TODO: Make this public
+            name = `${_iconsLeft}${icon}${obj.name}`;
 
       if ( obj.path ) { // Project
 
@@ -708,7 +708,7 @@ const Utils = {
           arguments: [obj, config.viewOpenInNewWindow, true]
         };
 
-        return new ViewProjectItem ( obj, name, command, vscode.TreeItemCollapsibleState.None );
+        return new ViewProjectItem ( obj, name, command, vscode.TreeItemCollapsibleState.None, _iconsRight );
 
       } else { // Group
 
