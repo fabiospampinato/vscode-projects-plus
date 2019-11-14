@@ -22,11 +22,7 @@ const Config = {
 
   getExtension ( extension = 'projects' ) {
 
-    const config = Config.untildify ( vscode.workspace.getConfiguration ().get ( extension ) ) as any;
-
-    if ( !config.configPath ) delete config.configPath;
-
-    return config;
+    return Config.untildify ( vscode.workspace.getConfiguration ().get ( extension ) ) as any;
 
   },
 
