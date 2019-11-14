@@ -1,3 +1,6 @@
+### Version 1.23.1
+- Ensuring we are not mutating VSC’s config object
+
 ### Version 1.23.0
 - Updated icons, using the new outline style
 - Added a “Project: Edit” command
