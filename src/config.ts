@@ -69,7 +69,7 @@ const Config = {
           configPath: string = extension.configPath || defaults.configPath,
           config = configPath && await Config.getFile ( configPath );
 
-    return _.merge ( {}, defaults, extension, config );
+    return _.merge ( {}, defaults, extension, config, {configPath} );
 
   },
 
