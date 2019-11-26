@@ -1,3 +1,6 @@
+### Version 1.23.2
+- Ensuring the default configuration location will be used if none is provided
+
 ### Version 1.23.1
 - Ensuring we are not mutating VSC’s config object
 
