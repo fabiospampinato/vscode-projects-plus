@@ -597,7 +597,7 @@ const Utils = {
 
         if ( depth > maxDepth ) return;
 
-        if ( !group.name || !group.projects ) return;
+        if ( !group.name || ( !group.groups && !group.projects ) ) return;
 
         if ( config.activeIndicator && onlyGroups && activeGroup && activeGroup.name === group.name ) {
 
