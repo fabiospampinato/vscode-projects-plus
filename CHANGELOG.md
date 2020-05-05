@@ -1,3 +1,7 @@
+### Version 1.23.3
+- Update .github/FUNDING.yml
+- Ensuring groups containing only other groups are displayed properly
+
 ### Version 1.23.2
 - Ensuring the default configuration location will be used if none is provided
 
