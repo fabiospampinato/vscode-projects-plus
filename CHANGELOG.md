@@ -1,3 +1,7 @@
+### Version 1.23.4
+- Deleted repo-level github funding.yml
+- Added a dialog announcing the fundraising
+
 ### Version 1.23.3
 - Update .github/FUNDING.yml
 - Ensuring groups containing only other groups are displayed properly
