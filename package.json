@@ -431,6 +431,7 @@
     "plist": "^2.1.0",
     "tildify": "^1.2.0",
     "untildify": "^3.0.2",
+    "vscode-beggar": "^1.0.0",
     "walker": "^1.0.7"
   },
   "devDependencies": {
