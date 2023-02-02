@@ -58,12 +58,36 @@ async function fetchProjectsFolders ( roots, depth, ignoreFolders, matchFolders 
 
           if ( !isRepository ) return true;
 
-          if ( !found.projects ) found.projects = [];
-
           const projectName = path.basename ( dir ),
                 projectPath = config.useTilde ? Utils.path.tildify ( dir ) : dir;
 
-          found.projects.push ({
+          let obj = found;
+
+          if ( config.inferGroups ) {
+            const groups = path.relative( root, path.dirname( dir ) ).split( path.sep );
+
+            obj = groups.reduce( ( acc, group ) => {
+              if ( !acc.groups ) acc.groups = [];
+
+              const foundGroup = acc.groups.find( x => x.name == group );
+
+              if ( foundGroup ) {
+                return foundGroup;
+              }
+
+              const newObj = {
+                name: group,
+              };
+
+              acc.groups.push( newObj );
+
+              return newObj;
+            }, found );
+          }
+
+          if ( !obj.projects ) obj.projects = [];
+
+          obj.projects.push ({
             name: projectName,
             path: projectPath
           });

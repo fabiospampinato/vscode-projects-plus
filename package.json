@@ -146,6 +146,11 @@
           "description": "Root paths from where to start searching for projects",
           "default": []
         },
+        "projects.inferGroups": {
+          "type": "boolean",
+          "description": "Infer groups from the folder structure in the refresh paths",
+          "default": false
+        },
         "projects.sortGroups": {
           "type": "boolean",
           "description": "Sort groups alphabetically",
