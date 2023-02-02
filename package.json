@@ -3,7 +3,7 @@
   "displayName": "Projects+",
   "description": "An extension for managing projects. Feature rich, customizable, automatically finds your projects",
   "icon": "resources/logo/logo-128x128.png",
-  "version": "1.23.4",
+  "version": "1.24.0",
   "license": "MIT",
   "main": "out/extension.js",
   "publisher": "fabiospampinato",

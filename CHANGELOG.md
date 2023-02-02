@@ -1,3 +1,7 @@
+### Version 1.24.0
+- Add `inferGroups` option, fixes #30 (#68)
+- Various minor changes
+
 ### Version 1.23.4
 - Deleted repo-level github funding.yml
 - Added a dialog announcing the fundraising
