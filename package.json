@@ -19,7 +19,7 @@
     "url": "https://github.com/fabiospampinato/vscode-projects-plus"
   },
   "engines": {
-    "vscode": "^1.21.0"
+    "vscode": "^1.60.0"
   },
   "keywords": [
     "vscode",
@@ -422,7 +422,6 @@
     "vscode:prepublish": "rm -rf out && webpack --mode production",
     "compile": "webpack --mode development",
     "compile:watch": "webpack --mode development --watch",
-    "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test"
   },
   "dependencies": {
@@ -440,9 +439,9 @@
     "walker": "^1.0.7"
   },
   "devDependencies": {
+    "@types/vscode": "^1.60.0",
     "ts-loader": "^5.2.1",
     "typescript": "^2.4.1",
-    "vscode": "^1.1.4",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   }

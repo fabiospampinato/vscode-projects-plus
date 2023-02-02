@@ -62,8 +62,7 @@ async function fetchProjectsFolders ( roots, depth, ignoreFolders, matchFolders 
                 projectPath = config.useTilde ? Utils.path.tildify ( dir ) : dir;
 
           let obj = found;
-
-          if ( config.inferGroups ) {
+          if ( config.inferGroups ) { //TODO: Rewrite this block
             const groups = path.relative( root, path.dirname( dir ) ).split( path.sep );
 
             obj = groups.reduce( ( acc, group ) => {

@@ -76,6 +76,7 @@ It adds 4 shortcuts:
   "projects.refreshDepth": 2, // Maximum depth to look at when refreshing
   "projects.refreshIgnoreFolders": ["node_modules",...], // Ignore these folders when refreshing
   "projects.refreshRoots": ['/path/to/projects',...], // Root paths from where to start searching for projects
+  "projects.inferGroups": false, // Infer groups from the folder structure in the refresh paths
   "projects.sortGroups": true, // Sort groups alphabetically
   "projects.sortProjects": true, // Sort projects alphabetically
   "projects.groupsOnTop": true, // Display groups on top of projects. This cannot be false if either `sortGroups` or `sortProjects` is false
