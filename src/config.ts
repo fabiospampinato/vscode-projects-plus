@@ -114,7 +114,7 @@ const Config = {
 
   merge ( config, ...otherConfigs ) {
 
-    /* ROUGH MERGE */ // Based on the assumpion that all arrays are either groups or projects
+    /* ROUGH MERGE */ // Based on the assumption that all arrays are either groups or projects
 
     function roughMerge ( config, ...otherConfigs ) {
       return _.mergeWith ( config, ...otherConfigs, ( prev, next ) => {
