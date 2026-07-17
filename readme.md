@@ -13,10 +13,10 @@ It comes packed with a lot of features:
 - **VSCode/Git/SVN/HG integration**: it can find your VSCode, Git, SubVersion and Mercurial projects too.
 - **Customizable**: add icons, sort groups/repositories manually or by name, custom indentation width, hide paths/descriptions, switch paths/descriptions position, customizable statusbar component.
 - **Explorer/Activity Bar view**: it adds a view for easy switching between projects.
-- **Extra informations**: it can show you extra informations about your projects:
+- **Extra information**: it can show you extra information about your projects:
   - **Ahead/Behind** (Git): enable the `projects.showAheadBehind` setting to see how many commits ahead or behind the repository is.
   - **Branch** (Git): enable the `projects.showBranch` setting to have the branch of a repository displayed next to its name. You can filter out branches via the `projects.ignoreBranches` setting.
-  - **Dirty state** (Git): enable the `projects.checkDirty` setting to have an icon indicating that a repository is dirty (has uncommitted changes) next to its name. If you have many projects the very first time you open your projects list it may tike a bit.
+  - **Dirty state** (Git): enable the `projects.checkDirty` setting to have an icon indicating that a repository is dirty (has uncommitted changes) next to its name. If you have many projects the very first time you open your projects list it may take a bit.
   - **Path existence**: enable the `projects.checkPaths` setting to have an icon indicating which projects are currently non-openable next to their name. For instance if you have projects inside encrypted disk images this extension will basically tell you which are unmounted.
 
 ## Install
