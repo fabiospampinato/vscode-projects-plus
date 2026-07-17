@@ -3,11 +3,11 @@
 
 import * as _ from 'lodash';
 import * as absolute from 'absolute';
-import {exec} from 'child_process';
-import * as fs from 'fs';
+import {exec} from 'node:child_process';
+import * as fs from 'node:fs';
 import * as mkdirp from 'mkdirp';
-import * as os from 'os';
-import * as path from 'path';
+import * as os from 'node:os';
+import * as path from 'node:path';
 import * as pify from 'pify';
 import * as tildify from 'tildify';
 import * as untildify from 'untildify';
