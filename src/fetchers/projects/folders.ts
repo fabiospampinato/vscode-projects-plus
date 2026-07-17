@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
-import * as path from 'path';
+import * as path from 'node:path';
 import * as vscode from 'vscode';
 import * as walker from 'walker';
 import Config from '../../config';

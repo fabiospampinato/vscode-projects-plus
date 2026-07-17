@@ -1,7 +1,7 @@
 
 /* IMPORT */
 
-import * as path from 'path';
+import * as path from 'node:path';
 import Utils from '../../utils';
 import {fetchNPMDescription} from './npm';
 

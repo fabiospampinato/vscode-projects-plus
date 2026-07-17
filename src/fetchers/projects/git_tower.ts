@@ -2,8 +2,8 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
-import * as fs from 'fs';
-import * as os from 'os';
+import * as fs from 'node:fs';
+import * as os from 'node:os';
 import * as plist from 'plist';
 import Config from '../../config';
 import Utils from '../../utils';

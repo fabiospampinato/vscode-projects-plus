@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
-import * as path from 'path';
+import * as path from 'node:path';
 import Utils from '../../utils';
 
 /* NPM */
